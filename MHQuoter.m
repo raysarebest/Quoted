@@ -18,6 +18,7 @@
         [self randomQuote];
     }
     NSDictionary *quote = [self.quotes objectAtIndex:index];
+    self.lastQuoteIndex = index;
     NSLog(@"%@, Quote Index Number: %lu", quote, (unsigned long)index);
     return quote;
 }

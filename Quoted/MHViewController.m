@@ -9,7 +9,9 @@
 #import "MHViewController.h"
 #import "MHQuoter.h"
 #import "MHColorPicker.h"
+#import "MHSocialSharer.h"
 @import AudioToolbox;
+@import Social;
 @interface MHViewController ()
 -(void)randomQuoteWithVibration:(BOOL)vibration;
 @end
@@ -28,10 +30,22 @@
     }
     return _colorPicker;
 }
+-(MHSocialSharer *)social{
+    if(!_social){
+        _social = [[MHSocialSharer alloc] init];
+    }
+    return _social;
+}
 #pragma mark - Xcode Generated Code
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self randomQuoteWithVibration:NO];
+    if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]){
+        self.twitterButton.hidden = YES;
+    }
+    if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]){
+        self.facebookButton.hidden = YES;
+    }
 }
 #pragma mark - Logic Essentials
 -(void)randomQuoteWithVibration:(BOOL)vibration{
@@ -56,5 +70,18 @@
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     [self randomQuoteWithVibration:NO];
+}
+#pragma mark - Social Buttons
+-(IBAction)postToFacebook:(UIButton *)sender{
+    SLComposeViewController *post = [self.social facebookPostWithMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.quoteLabel.text, self.authorLabel.text]];
+    if(post){
+        [self presentViewController:post animated:YES completion:nil];
+    }
+}
+-(IBAction)postToTwitter:(UIButton *)sender{
+    SLComposeViewController *tweet = [self.social tweetWithMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.quoteLabel.text, self.authorLabel.text]];
+    if(tweet){
+        [self presentViewController:tweet animated:YES completion:nil];
+    }
 }
 @end

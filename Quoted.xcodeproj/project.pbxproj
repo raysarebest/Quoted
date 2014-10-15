@@ -23,6 +23,8 @@
 		4C40131A19A3B19600C3C262 /* QuotedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C40131919A3B19600C3C262 /* QuotedTests.m */; };
 		4C40132519A3B25300C3C262 /* MHQuoter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C40132419A3B25300C3C262 /* MHQuoter.m */; };
 		4C468A4719A6F36E002F87BB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C468A4619A6F36E002F87BB /* AudioToolbox.framework */; };
+		4C96776219EE02E50057A52E /* MHSocialSharer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96776119EE02E50057A52E /* MHSocialSharer.m */; };
+		4C96776419EE04D50057A52E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C96776319EE04D50057A52E /* Social.framework */; };
 		4CFC0A9E19D79BE500765F39 /* MHColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC0A9D19D79BE500765F39 /* MHColorPicker.m */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +61,9 @@
 		4C40132319A3B25300C3C262 /* MHQuoter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHQuoter.h; path = ../MHQuoter.h; sourceTree = "<group>"; };
 		4C40132419A3B25300C3C262 /* MHQuoter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHQuoter.m; path = ../MHQuoter.m; sourceTree = "<group>"; };
 		4C468A4619A6F36E002F87BB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		4C96776019EE02E50057A52E /* MHSocialSharer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHSocialSharer.h; sourceTree = "<group>"; };
+		4C96776119EE02E50057A52E /* MHSocialSharer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHSocialSharer.m; sourceTree = "<group>"; };
+		4C96776319EE04D50057A52E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		4CFC0A9C19D79BE500765F39 /* MHColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHColorPicker.h; path = ../MHColorPicker.h; sourceTree = "<group>"; };
 		4CFC0A9D19D79BE500765F39 /* MHColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHColorPicker.m; path = ../MHColorPicker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C96776419EE04D50057A52E /* Social.framework in Frameworks */,
 				4C468A4719A6F36E002F87BB /* AudioToolbox.framework in Frameworks */,
 				4C4012F119A3B19600C3C262 /* CoreGraphics.framework in Frameworks */,
 				4C4012F319A3B19600C3C262 /* UIKit.framework in Frameworks */,
@@ -117,6 +123,7 @@
 		4C4012ED19A3B19600C3C262 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4C96776319EE04D50057A52E /* Social.framework */,
 				4C468A4619A6F36E002F87BB /* AudioToolbox.framework */,
 				4C4012EE19A3B19600C3C262 /* Foundation.framework */,
 				4C4012F019A3B19600C3C262 /* CoreGraphics.framework */,
@@ -135,6 +142,8 @@
 				4C40130019A3B19600C3C262 /* Main.storyboard */,
 				4C40130319A3B19600C3C262 /* MHViewController.h */,
 				4C40130419A3B19600C3C262 /* MHViewController.m */,
+				4C96776019EE02E50057A52E /* MHSocialSharer.h */,
+				4C96776119EE02E50057A52E /* MHSocialSharer.m */,
 				4C40130619A3B19600C3C262 /* Images.xcassets */,
 				4C40132319A3B25300C3C262 /* MHQuoter.h */,
 				4C40132419A3B25300C3C262 /* MHQuoter.m */,
@@ -276,6 +285,7 @@
 				4C40130519A3B19600C3C262 /* MHViewController.m in Sources */,
 				4CFC0A9E19D79BE500765F39 /* MHColorPicker.m in Sources */,
 				4C40132519A3B25300C3C262 /* MHQuoter.m in Sources */,
+				4C96776219EE02E50057A52E /* MHSocialSharer.m in Sources */,
 				4C4012FF19A3B19600C3C262 /* MHAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
