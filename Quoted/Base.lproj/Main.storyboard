@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A388b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -16,12 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quote" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="IQK-7d-59d">
-                                <rect key="frame" x="20" y="20" width="280" height="484"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="35"/>
-                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-Author" textAlignment="right" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zob-gt-oYL">
                                 <rect key="frame" x="20" y="512" width="280" height="36"/>
                                 <constraints>
@@ -58,10 +53,15 @@
                                     <action selector="postToTwitter:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="xDl-Tj-PjI"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quote" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="IQK-7d-59d">
+                                <rect key="frame" x="20" y="42" width="280" height="484"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="35"/>
+                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="IQK-7d-59d" secondAttribute="trailing" constant="20" id="Fas-dM-MBI"/>
                             <constraint firstItem="zob-gt-oYL" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="HHz-GH-Gxc"/>
                             <constraint firstAttribute="trailing" secondItem="RWd-V0-Ceq" secondAttribute="trailing" constant="16" id="RnJ-8p-vrN"/>
                             <constraint firstItem="RWd-V0-Ceq" firstAttribute="centerY" secondItem="JCa-tg-lVC" secondAttribute="centerY" id="SZN-k8-bwi"/>
@@ -69,10 +69,7 @@
                             <constraint firstItem="RWd-V0-Ceq" firstAttribute="leading" secondItem="JCa-tg-lVC" secondAttribute="trailing" constant="8" id="c9O-3j-agg"/>
                             <constraint firstItem="RWd-V0-Ceq" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="16" id="kLm-Pv-ah5"/>
                             <constraint firstAttribute="trailing" secondItem="zob-gt-oYL" secondAttribute="trailing" constant="20" id="nJa-Tp-4ot"/>
-                            <constraint firstItem="zob-gt-oYL" firstAttribute="top" secondItem="IQK-7d-59d" secondAttribute="bottom" constant="8" id="qPO-9g-5gR"/>
                             <constraint firstItem="JCa-tg-lVC" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="16" id="rW6-uG-87S"/>
-                            <constraint firstItem="IQK-7d-59d" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="vfB-5R-Bap"/>
-                            <constraint firstItem="IQK-7d-59d" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="xdH-rb-GxY"/>
                             <constraint firstItem="RWd-V0-Ceq" firstAttribute="height" secondItem="JCa-tg-lVC" secondAttribute="height" id="yBX-U6-kpI"/>
                         </constraints>
                     </view>

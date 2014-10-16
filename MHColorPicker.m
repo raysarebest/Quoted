@@ -32,7 +32,6 @@ void scatterColors(float specificity, u_int32_t randomness){
     if((colors[0] <= colors[1]+specificity && colors[0] >= colors[1]-specificity) && (colors[1] <= colors[2]+specificity && colors[1] >= colors[2]-specificity) && (colors[0] <= colors[2]+specificity && colors[0] >= colors[2]-specificity)){
         //Float typecast to int might cause a crash at runtime, but it should be a round number, so we'll see
         for(int i=0; i<3; i++){
-            //The number called here is the u_int32_t maximum
             colors[i] = randomColorValue(randomness);
             scatterColors(specificity, randomness);
         }
