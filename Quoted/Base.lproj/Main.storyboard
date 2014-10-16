@@ -17,16 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-Author" textAlignment="right" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zob-gt-oYL">
-                                <rect key="frame" x="20" y="512" width="280" height="36"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="I6u-IX-0bL"/>
-                                    <constraint firstAttribute="width" constant="280" id="Jgv-h5-GCx"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="20"/>
-                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWd-V0-Ceq">
                                 <rect key="frame" x="260" y="16" width="44" height="44"/>
                                 <constraints>
@@ -53,30 +43,45 @@
                                     <action selector="postToTwitter:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="xDl-Tj-PjI"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quote" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="IQK-7d-59d">
-                                <rect key="frame" x="20" y="42" width="280" height="484"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="35"/>
+                            <textView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Quote" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBV-AC-MXI">
+                                <rect key="frame" x="16" y="68" width="288" height="436"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="no"/>
+                            </textView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-Author" textAlignment="right" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zob-gt-oYL">
+                                <rect key="frame" x="16" y="512" width="288" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="Plf-JQ-det"/>
+                                    <constraint firstAttribute="width" constant="288" id="tpf-fh-55D"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="zob-gt-oYL" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="HHz-GH-Gxc"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="zob-gt-oYL" secondAttribute="bottom" constant="20" id="ASt-f7-a7U"/>
+                            <constraint firstAttribute="trailing" secondItem="zob-gt-oYL" secondAttribute="trailing" constant="16" id="MwC-BF-bYL"/>
                             <constraint firstAttribute="trailing" secondItem="RWd-V0-Ceq" secondAttribute="trailing" constant="16" id="RnJ-8p-vrN"/>
                             <constraint firstItem="RWd-V0-Ceq" firstAttribute="centerY" secondItem="JCa-tg-lVC" secondAttribute="centerY" id="SZN-k8-bwi"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="zob-gt-oYL" secondAttribute="bottom" constant="20" id="TQS-hJ-VSX"/>
+                            <constraint firstItem="RBV-AC-MXI" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="UIb-RH-ZuK"/>
                             <constraint firstItem="RWd-V0-Ceq" firstAttribute="leading" secondItem="JCa-tg-lVC" secondAttribute="trailing" constant="8" id="c9O-3j-agg"/>
+                            <constraint firstItem="RBV-AC-MXI" firstAttribute="top" secondItem="JCa-tg-lVC" secondAttribute="bottom" constant="8" id="hLf-ob-1hK"/>
+                            <constraint firstItem="zob-gt-oYL" firstAttribute="top" secondItem="RBV-AC-MXI" secondAttribute="bottom" constant="8" id="hS9-wS-Vj3"/>
+                            <constraint firstAttribute="trailing" secondItem="RBV-AC-MXI" secondAttribute="trailing" constant="16" id="jBp-cD-z4a"/>
                             <constraint firstItem="RWd-V0-Ceq" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="16" id="kLm-Pv-ah5"/>
-                            <constraint firstAttribute="trailing" secondItem="zob-gt-oYL" secondAttribute="trailing" constant="20" id="nJa-Tp-4ot"/>
                             <constraint firstItem="JCa-tg-lVC" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="16" id="rW6-uG-87S"/>
+                            <constraint firstItem="zob-gt-oYL" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="uPc-Kd-FuW"/>
                             <constraint firstItem="RWd-V0-Ceq" firstAttribute="height" secondItem="JCa-tg-lVC" secondAttribute="height" id="yBX-U6-kpI"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="authorLabel" destination="zob-gt-oYL" id="zBf-jb-7kA"/>
                         <outlet property="facebookButton" destination="RWd-V0-Ceq" id="Ccd-LA-9sI"/>
-                        <outlet property="quoteLabel" destination="IQK-7d-59d" id="GfA-jP-ZwR"/>
+                        <outlet property="textView" destination="RBV-AC-MXI" id="R3j-CT-2qS"/>
                         <outlet property="twitterButton" destination="JCa-tg-lVC" id="zbs-MA-Ur1"/>
                     </connections>
                 </viewController>
