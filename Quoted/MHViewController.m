@@ -77,7 +77,6 @@
 -(void)randomQuoteWithVibration:(BOOL)vibration{
     NSDictionary *quote = [self.quoter randomQuote];
     NSString *author = [quote.allKeys objectAtIndex:0];
-    NSLog(@"Author at load time: %@", author);
     self.textView.text = [quote objectForKey:author];
     self.authorLabel.text = [NSString stringWithFormat:@"- %@", author];
     UIColor *background = [self.colorPicker randomColorWithMinColorDifference:.4 andRandomnessSpecificity:UINT32_MAX andAlpha:1];
