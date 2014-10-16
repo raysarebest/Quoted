@@ -15,7 +15,11 @@
     NSUInteger index = arc4random_uniform((u_int32_t)self.quotes.count);
     if(index == self.lastQuoteIndex){
         //If the quote is the same as last time, we'll recurse and try again
-        [self randomQuote];
+        
+        //Recursing doesn't seem to work
+        
+        NSLog(@"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPulled the same quote, trying again");
+        return [self randomQuote];
     }
     else{
         NSDictionary *quote = [self.quotes objectAtIndex:index];

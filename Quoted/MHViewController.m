@@ -37,26 +37,47 @@
     }
     return _social;
 }
-#pragma mark - Xcode Generated Code
+#pragma mark - View Setup Code
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self randomQuoteWithVibration:NO];
-    if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]){
-        self.twitterButton.hidden = YES;
-    }
-    if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]){
-        self.facebookButton.hidden = YES;
-    }
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(quoteAreaWasTapped)];
     tap.numberOfTapsRequired = 1;
     tap.cancelsTouchesInView = NO;
     [self.textView addGestureRecognizer:tap];
     [self.textView addObserver:self forKeyPath:@"contentSize" options:(NSKeyValueObservingOptionNew) context:nil];
+    if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]){
+        self.twitterButton.hidden = YES;
+    }
+    else{
+        self.twitterButton.hidden = NO;
+    }
+    if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]){
+        self.facebookButton.hidden = YES;
+    }
+    else{
+        self.facebookButton.hidden = NO;
+    }
+}
+-(void)viewWillLayoutSubviews{
+    if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]){
+        self.twitterButton.hidden = YES;
+    }
+    else{
+        self.twitterButton.hidden = NO;
+    }
+    if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]){
+        self.facebookButton.hidden = YES;
+    }
+    else{
+        self.facebookButton.hidden = NO;
+    }
 }
 #pragma mark - Logic Essentials
 -(void)randomQuoteWithVibration:(BOOL)vibration{
     NSDictionary *quote = [self.quoter randomQuote];
     NSString *author = [quote.allKeys objectAtIndex:0];
+    NSLog(@"Author at load time: %@", author);
     self.textView.text = [quote objectForKey:author];
     self.authorLabel.text = [NSString stringWithFormat:@"- %@", author];
     UIColor *background = [self.colorPicker randomColorWithMinColorDifference:.4 andRandomnessSpecificity:UINT32_MAX andAlpha:1];

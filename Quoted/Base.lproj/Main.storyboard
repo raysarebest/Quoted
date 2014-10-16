@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A388b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -52,8 +53,8 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-Author" textAlignment="right" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zob-gt-oYL">
                                 <rect key="frame" x="16" y="512" width="288" height="36"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="Plf-JQ-det"/>
-                                    <constraint firstAttribute="width" constant="288" id="tpf-fh-55D"/>
+                                    <constraint firstAttribute="height" constant="36" id="4UI-1I-3zT"/>
+                                    <constraint firstAttribute="width" constant="288" id="89h-tE-kTy"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -62,19 +63,18 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="zob-gt-oYL" secondAttribute="bottom" constant="20" id="ASt-f7-a7U"/>
-                            <constraint firstAttribute="trailing" secondItem="zob-gt-oYL" secondAttribute="trailing" constant="16" id="MwC-BF-bYL"/>
+                            <constraint firstAttribute="trailing" secondItem="RBV-AC-MXI" secondAttribute="trailing" constant="16" id="8xj-vc-qLl"/>
+                            <constraint firstItem="RBV-AC-MXI" firstAttribute="top" secondItem="JCa-tg-lVC" secondAttribute="bottom" constant="8" id="RYN-MU-rX3"/>
                             <constraint firstAttribute="trailing" secondItem="RWd-V0-Ceq" secondAttribute="trailing" constant="16" id="RnJ-8p-vrN"/>
                             <constraint firstItem="RWd-V0-Ceq" firstAttribute="centerY" secondItem="JCa-tg-lVC" secondAttribute="centerY" id="SZN-k8-bwi"/>
-                            <constraint firstItem="RBV-AC-MXI" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="UIb-RH-ZuK"/>
+                            <constraint firstItem="zob-gt-oYL" firstAttribute="top" secondItem="RBV-AC-MXI" secondAttribute="bottom" constant="8" id="XGI-Ms-rHg"/>
                             <constraint firstItem="RWd-V0-Ceq" firstAttribute="leading" secondItem="JCa-tg-lVC" secondAttribute="trailing" constant="8" id="c9O-3j-agg"/>
-                            <constraint firstItem="RBV-AC-MXI" firstAttribute="top" secondItem="JCa-tg-lVC" secondAttribute="bottom" constant="8" id="hLf-ob-1hK"/>
-                            <constraint firstItem="zob-gt-oYL" firstAttribute="top" secondItem="RBV-AC-MXI" secondAttribute="bottom" constant="8" id="hS9-wS-Vj3"/>
-                            <constraint firstAttribute="trailing" secondItem="RBV-AC-MXI" secondAttribute="trailing" constant="16" id="jBp-cD-z4a"/>
                             <constraint firstItem="RWd-V0-Ceq" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="16" id="kLm-Pv-ah5"/>
+                            <constraint firstAttribute="trailing" secondItem="zob-gt-oYL" secondAttribute="trailing" constant="16" id="pei-Zf-dc7"/>
+                            <constraint firstItem="RBV-AC-MXI" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="qcl-dN-Orv"/>
                             <constraint firstItem="JCa-tg-lVC" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="16" id="rW6-uG-87S"/>
-                            <constraint firstItem="zob-gt-oYL" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="uPc-Kd-FuW"/>
                             <constraint firstItem="RWd-V0-Ceq" firstAttribute="height" secondItem="JCa-tg-lVC" secondAttribute="height" id="yBX-U6-kpI"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="zob-gt-oYL" secondAttribute="bottom" constant="20" id="zFf-8A-sH4"/>
                         </constraints>
                     </view>
                     <connections>
