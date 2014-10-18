@@ -46,18 +46,6 @@
     tap.cancelsTouchesInView = NO;
     [self.textView addGestureRecognizer:tap];
     [self.textView addObserver:self forKeyPath:@"contentSize" options:(NSKeyValueObservingOptionNew) context:nil];
-    if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]){
-        self.twitterButton.hidden = YES;
-    }
-    else{
-        self.twitterButton.hidden = NO;
-    }
-    if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]){
-        self.facebookButton.hidden = YES;
-    }
-    else{
-        self.facebookButton.hidden = NO;
-    }
 }
 -(void)viewWillLayoutSubviews{
     if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]){
