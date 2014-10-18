@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Michael Hulet. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface MHAppDelegate : UIResponder <UIApplicationDelegate>
 
