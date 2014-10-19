@@ -113,10 +113,10 @@
 #pragma mark - UI Helper Methods
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     if([object isKindOfClass:[UITextView class]]){
-        UITextView *tv = object;
-        CGFloat topCorrect = ([tv bounds].size.height - [tv contentSize].height * [tv zoomScale])/2.0;
+        UITextView *textView = object;
+        CGFloat topCorrect = (textView.bounds.size.height - textView.contentSize.height * textView.zoomScale)/2.0;
         topCorrect = (topCorrect < 0.0 ? 0.0 : topCorrect);
-        tv.contentOffset = (CGPoint){.x = 0, .y = -topCorrect};
+        textView.contentOffset = (CGPoint){.x = 0, .y = -topCorrect};
     }
 }
 @end
