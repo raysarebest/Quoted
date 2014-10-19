@@ -23,6 +23,7 @@
 		4C40131A19A3B19600C3C262 /* QuotedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C40131919A3B19600C3C262 /* QuotedTests.m */; };
 		4C40132519A3B25300C3C262 /* MHQuoter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C40132419A3B25300C3C262 /* MHQuoter.m */; };
 		4C468A4719A6F36E002F87BB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C468A4619A6F36E002F87BB /* AudioToolbox.framework */; };
+		4C7830BE19F2F913000F5798 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7830BD19F2F913000F5798 /* iAd.framework */; };
 		4C96776219EE02E50057A52E /* MHSocialSharer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96776119EE02E50057A52E /* MHSocialSharer.m */; };
 		4C96776419EE04D50057A52E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C96776319EE04D50057A52E /* Social.framework */; };
 		4CFC0A9E19D79BE500765F39 /* MHColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC0A9D19D79BE500765F39 /* MHColorPicker.m */; };
@@ -61,6 +62,7 @@
 		4C40132319A3B25300C3C262 /* MHQuoter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHQuoter.h; path = ../MHQuoter.h; sourceTree = "<group>"; };
 		4C40132419A3B25300C3C262 /* MHQuoter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHQuoter.m; path = ../MHQuoter.m; sourceTree = "<group>"; };
 		4C468A4619A6F36E002F87BB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		4C7830BD19F2F913000F5798 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		4C96776019EE02E50057A52E /* MHSocialSharer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHSocialSharer.h; sourceTree = "<group>"; };
 		4C96776119EE02E50057A52E /* MHSocialSharer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHSocialSharer.m; sourceTree = "<group>"; };
 		4C96776319EE04D50057A52E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -73,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C7830BE19F2F913000F5798 /* iAd.framework in Frameworks */,
 				4C96776419EE04D50057A52E /* Social.framework in Frameworks */,
 				4C468A4719A6F36E002F87BB /* AudioToolbox.framework in Frameworks */,
 				4C4012F119A3B19600C3C262 /* CoreGraphics.framework in Frameworks */,
@@ -123,6 +126,7 @@
 		4C4012ED19A3B19600C3C262 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4C7830BD19F2F913000F5798 /* iAd.framework */,
 				4C96776319EE04D50057A52E /* Social.framework */,
 				4C468A4619A6F36E002F87BB /* AudioToolbox.framework */,
 				4C4012EE19A3B19600C3C262 /* Foundation.framework */,

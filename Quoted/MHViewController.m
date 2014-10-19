@@ -15,6 +15,7 @@
 @interface MHViewController ()
 -(void)randomQuoteWithVibration:(BOOL)vibration;
 -(void)quoteAreaWasTapped;
+-(void)correctTextCentering;
 @end
 @implementation MHViewController
 //I'm supposed to add random animations into this app at some point, but I really don't feel like it. Maybe I'll do it later
@@ -46,6 +47,8 @@
     tap.cancelsTouchesInView = NO;
     [self.textView addGestureRecognizer:tap];
     [self.textView addObserver:self forKeyPath:@"contentSize" options:(NSKeyValueObservingOptionNew) context:nil];
+    [self.textView addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:nil];
+    self.canDisplayBannerAds = YES;
 }
 -(void)viewWillLayoutSubviews{
     if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]){
@@ -68,7 +71,12 @@
     self.textView.text = [quote objectForKey:author];
     self.authorLabel.text = [NSString stringWithFormat:@"- %@", author];
     UIColor *background = [self.colorPicker randomColorWithMinColorDifference:.4 andRandomnessSpecificity:UINT32_MAX andAlpha:1];
-    self.view.backgroundColor = background;
+    if(self.canDisplayBannerAds){
+        self.originalContentView.backgroundColor = background;
+    }
+    else{
+        self.view.backgroundColor = background;
+    }
     self.textView.backgroundColor = background;
     UIColor *textColor = [self.colorPicker textColorFromBackgroundColor:background];
     self.authorLabel.textColor = textColor;
@@ -103,13 +111,32 @@
         [self presentViewController:tweet animated:YES completion:nil];
     }
 }
-#pragma mark = UI Helper Methods
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+#pragma mark - UI Helper Methods
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     if([object isKindOfClass:[UITextView class]]){
         UITextView *tv = object;
         CGFloat topCorrect = ([tv bounds].size.height - [tv contentSize].height * [tv zoomScale])/2.0;
-        topCorrect = ( topCorrect < 0.0 ? 0.0 : topCorrect );
+        topCorrect = (topCorrect < 0.0 ? 0.0 : topCorrect);
         tv.contentOffset = (CGPoint){.x = 0, .y = -topCorrect};
     }
+}
+-(void)correctTextCentering{
+    CGFloat topCorrect = ([self.textView bounds].size.height - [self.textView contentSize].height * [self.textView zoomScale])/2.0;
+    topCorrect = (topCorrect < 0.0 ? 0.0 : topCorrect);
+    self.textView.contentOffset = (CGPoint){.x = 0, .y = -topCorrect};
+}
+#pragma mark - iAd
+-(BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave{
+    [self correctTextCentering];
+    return YES;
+}
+-(void)bannerViewDidLoadAd:(ADBannerView *)banner{
+    [self correctTextCentering];
+}
+-(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
+    [self correctTextCentering];
+}
+-(void)bannerViewActionDidFinish:(ADBannerView *)banner{
+    [self correctTextCentering];
 }
 @end
