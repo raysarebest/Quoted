@@ -15,7 +15,6 @@
 @interface MHViewController ()
 -(void)randomQuoteWithVibration:(BOOL)vibration;
 -(void)quoteAreaWasTapped;
--(void)correctTextCentering;
 @end
 @implementation MHViewController
 //I'm supposed to add random animations into this app at some point, but I really don't feel like it. Maybe I'll do it later
@@ -46,7 +45,7 @@
     tap.numberOfTapsRequired = 1;
     tap.cancelsTouchesInView = NO;
     [self.textView addGestureRecognizer:tap];
-    [self.textView addObserver:self forKeyPath:@"contentSize" options:(NSKeyValueObservingOptionNew) context:nil];
+    [self.textView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
     [self.textView addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:nil];
     self.canDisplayBannerAds = YES;
 }
@@ -119,24 +118,5 @@
         topCorrect = (topCorrect < 0.0 ? 0.0 : topCorrect);
         tv.contentOffset = (CGPoint){.x = 0, .y = -topCorrect};
     }
-}
--(void)correctTextCentering{
-    CGFloat topCorrect = ([self.textView bounds].size.height - [self.textView contentSize].height * [self.textView zoomScale])/2.0;
-    topCorrect = (topCorrect < 0.0 ? 0.0 : topCorrect);
-    self.textView.contentOffset = (CGPoint){.x = 0, .y = -topCorrect};
-}
-#pragma mark - iAd
--(BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave{
-    [self correctTextCentering];
-    return YES;
-}
--(void)bannerViewDidLoadAd:(ADBannerView *)banner{
-    [self correctTextCentering];
-}
--(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
-    [self correctTextCentering];
-}
--(void)bannerViewActionDidFinish:(ADBannerView *)banner{
-    [self correctTextCentering];
 }
 @end

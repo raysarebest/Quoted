@@ -11,7 +11,7 @@
 @class MHQuoter;
 @class MHColorPicker;
 @class MHSocialSharer;
-@interface MHViewController : UIViewController <ADBannerViewDelegate>
+@interface MHViewController : UIViewController
 @property (strong, nonatomic) MHQuoter *quoter;
 @property (strong, nonatomic) MHColorPicker *colorPicker;
 @property (strong, nonatomic) MHSocialSharer *social;
