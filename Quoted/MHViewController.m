@@ -33,7 +33,7 @@
 }
 -(MHSocialSharer *)social{
     if(!_social){
-        _social = [[MHSocialSharer alloc] init];
+        _social = [MHSocialSharer sharerWithFacebookAppID:@"1523804647867642"];
     }
     return _social;
 }
@@ -46,7 +46,9 @@
     tap.cancelsTouchesInView = NO;
     [self.textView addGestureRecognizer:tap];
     [self.textView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
-    [self.textView addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:nil];
+    [self.textView addObserver:self forKeyPath:@"center" options:NSKeyValueObservingOptionNew context:nil];
+    self.textView.scrollEnabled = YES;
+    //Just change this to YES to enable ad support
     self.canDisplayBannerAds = YES;
 }
 -(void)viewWillLayoutSubviews{
@@ -99,10 +101,11 @@
 }
 #pragma mark - Social Buttons
 -(IBAction)postToFacebook:(UIButton *)sender{
-    SLComposeViewController *post = [self.social facebookPostWithMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.textView.text, self.authorLabel.text]];
-    if(post){
-        [self presentViewController:post animated:YES completion:nil];
-    }
+//    SLComposeViewController *post = [self.social facebookPostWithMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.textView.text, self.authorLabel.text]];
+//    if(post){
+//        [self presentViewController:post animated:YES completion:nil];
+//    }
+    [self.social postToFacebookWithMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.textView.text, self.authorLabel.text]];
 }
 -(IBAction)postToTwitter:(UIButton *)sender{
     SLComposeViewController *tweet = [self.social tweetWithMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.textView.text, self.authorLabel.text]];
@@ -112,11 +115,8 @@
 }
 #pragma mark - UI Helper Methods
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-    if([object isKindOfClass:[UITextView class]]){
-        UITextView *textView = object;
-        CGFloat topCorrect = (textView.bounds.size.height - textView.contentSize.height * textView.zoomScale)/2.0;
-        topCorrect = (topCorrect < 0.0 ? 0.0 : topCorrect);
-        textView.contentOffset = (CGPoint){.x = 0, .y = -topCorrect};
-    }
+    CGFloat topCorrect = (self.textView.bounds.size.height - self.textView.contentSize.height * self.textView.zoomScale)/2.0;
+    topCorrect = (topCorrect < 0.0 ? 0.0 : topCorrect);
+    self.textView.contentOffset = (CGPoint){.x = 0, .y = -topCorrect};
 }
 @end
