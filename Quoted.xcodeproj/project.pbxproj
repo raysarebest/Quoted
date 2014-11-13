@@ -23,7 +23,7 @@
 		4C40132519A3B25300C3C262 /* MHQuoter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C40132419A3B25300C3C262 /* MHQuoter.m */; };
 		4C468A4719A6F36E002F87BB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C468A4619A6F36E002F87BB /* AudioToolbox.framework */; };
 		4C7830BE19F2F913000F5798 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7830BD19F2F913000F5798 /* iAd.framework */; };
-		4C96776219EE02E50057A52E /* MHSocialSharer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96776119EE02E50057A52E /* MHSocialSharer.m */; };
+		4C96776219EE02E50057A52E /* MHSocialSharer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96776119EE02E50057A52E /* MHSocialSharer.m */; settings = {COMPILER_FLAGS = "-Wno-arc-performSelector-leaks"; }; };
 		4C96776419EE04D50057A52E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C96776319EE04D50057A52E /* Social.framework */; };
 		4CD560B11A0CA05B002A0CE8 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CD560B01A0CA05A002A0CE8 /* Accounts.framework */; };
 		4CFC0A9E19D79BE500765F39 /* MHColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC0A9D19D79BE500765F39 /* MHColorPicker.m */; };

@@ -9,7 +9,7 @@
 @import Foundation;
 
 @interface MHColorPicker : NSObject
--(UIColor *)randomColorWithMinColorDifference:(float)difference andRandomnessSpecificity:(u_int32_t)specificity andAlpha:(CGFloat)alpha;
+-(UIColor *)randomColorWithMinColorDifference:(float)difference randomnessSpecificity:(u_int32_t)specificity andAlpha:(CGFloat)alpha;
 -(UIColor *)textColorFromBackgroundColor:(UIColor *)background;
 CGFloat randomColorValue(u_int32_t specificity);
 @end

@@ -11,6 +11,7 @@
 @interface MHSocialSharer()
 -(SLComposeViewController *)shareSheetForNetwork:(NSString *)network message:(NSString *)message;
 -(NSError *)postMessageToFacebookAccount:(ACAccountType *)facebook message:(NSString *)message;
+-(void)executeOptionalDelegateMethod:(SEL)method;
 @end
 @implementation MHSocialSharer
 #pragma mark - Initializers
@@ -75,6 +76,13 @@
         }
     }];
     return globalError;
+}
+-(void)executeOptionalDelegateMethod:(SEL)method{
+    NSObject *delegate = (NSObject *)self.delegate;
+    if([delegate respondsToSelector:method]){
+        //Apple LLVM generates a warning here. performSelector may cause a leak because the selector is unknown. If anything terrible happens here, find this file in the "Compile Sources" section of the "Build Phases" tab in the Project Navigator, and delete the only flag that's there
+        [delegate performSelector:method];
+    }
 }
 #pragma mark - Property Lazy Instantiation
 -(ACAccountStore *)deviceAccounts{

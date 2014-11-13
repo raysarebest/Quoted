@@ -71,7 +71,8 @@
     NSString *author = [quote.allKeys objectAtIndex:0];
     self.textView.text = [quote objectForKey:author];
     self.authorLabel.text = [NSString stringWithFormat:@"- %@", author];
-    UIColor *background = [self.colorPicker randomColorWithMinColorDifference:.4 andRandomnessSpecificity:UINT32_MAX andAlpha:1];
+    self.authorLabel.accessibilityLabel = self.authorLabel.text;
+    UIColor *background = [self.colorPicker randomColorWithMinColorDifference:.4 randomnessSpecificity:UINT32_MAX andAlpha:1];
     if(self.canDisplayBannerAds){
         self.originalContentView.backgroundColor = background;
     }

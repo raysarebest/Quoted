@@ -15,7 +15,7 @@ void scatterColors(float specificity, u_int32_t randomness);
 //I have to declare an array for colors globally, because you can't pass arrays as function arguments in C :(
 CGFloat colors[3];
 #pragma mark - Public Methods
--(UIColor *)randomColorWithMinColorDifference:(float)difference andRandomnessSpecificity:(u_int32_t)specificity andAlpha:(CGFloat)alpha{
+-(UIColor *)randomColorWithMinColorDifference:(float)difference randomnessSpecificity:(u_int32_t)specificity andAlpha:(CGFloat)alpha{
     UIColor *color = [UIColor colorWithRed:randomColorValue(specificity) green:randomColorValue(specificity) blue:randomColorValue(specificity) alpha:alpha];
     [color getRed:&colors[0] green:&colors[1] blue:&colors[2] alpha:nil];
     scatterColors(difference, specificity);
@@ -29,8 +29,9 @@ CGFloat randomColorValue(u_int32_t specificity){
 }
 #pragma mark - Helper Methods
 void scatterColors(float specificity, u_int32_t randomness){
+    //Maybe the colors would have more of a variety and be less harsh if I allowed 2 similar values and an outlier?
     if((colors[0] <= colors[1]+specificity && colors[0] >= colors[1]-specificity) && (colors[1] <= colors[2]+specificity && colors[1] >= colors[2]-specificity) && (colors[0] <= colors[2]+specificity && colors[0] >= colors[2]-specificity)){
-        //Float typecast to int might cause a crash at runtime, but it should be a round number, so we'll see
+        //float typecast to int might cause a crash at runtime, but it should be a round number, so we'll see
         for(int i=0; i<3; i++){
             colors[i] = randomColorValue(randomness);
             scatterColors(specificity, randomness);
