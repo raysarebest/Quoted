@@ -29,7 +29,6 @@ CGFloat randomColorValue(u_int32_t specificity){
 }
 #pragma mark - Helper Methods
 void scatterColors(float specificity, u_int32_t randomness){
-    //Maybe the colors would have more of a variety and be less harsh if I allowed 2 similar values and an outlier?
     if((colors[0] <= colors[1]+specificity && colors[0] >= colors[1]-specificity) && (colors[1] <= colors[2]+specificity && colors[1] >= colors[2]-specificity) && (colors[0] <= colors[2]+specificity && colors[0] >= colors[2]-specificity)){
         //float typecast to int might cause a crash at runtime, but it should be a round number, so we'll see
         for(int i=0; i<3; i++){

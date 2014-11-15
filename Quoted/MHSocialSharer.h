@@ -16,9 +16,9 @@
 @interface MHSocialSharer : NSObject
 @property (strong, nonatomic) NSString *facebookAppID;
 @property (strong, nonatomic) ACAccountStore *deviceAccounts;
-@property (strong, nonatomic) id<MHSocialDelegate> delegate;
--(instancetype)initWithFacebookAppID:(NSString *)id;
-+(instancetype)sharerWithFacebookAppID:(NSString *)id;
+@property (assign, nonatomic) id<MHSocialDelegate> delegate;
+-(instancetype)initWithFacebookAppID:(NSString *)appID;
++(instancetype)sharerWithFacebookAppID:(NSString *)appID;
 -(SLComposeViewController *)facebookPostWithMessage:(NSString *)message;
 -(SLComposeViewController *)tweetWithMessage:(NSString *)message;
 -(NSError *)postToFacebookWithMessage:(NSString *)message;

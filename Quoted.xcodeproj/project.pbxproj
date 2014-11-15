@@ -22,6 +22,7 @@
 		4C40131A19A3B19600C3C262 /* QuotedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C40131919A3B19600C3C262 /* QuotedTests.m */; };
 		4C40132519A3B25300C3C262 /* MHQuoter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C40132419A3B25300C3C262 /* MHQuoter.m */; };
 		4C468A4719A6F36E002F87BB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C468A4619A6F36E002F87BB /* AudioToolbox.framework */; };
+		4C60C3781A17A5F400960F7F /* MHAlertBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C60C3771A17A5F400960F7F /* MHAlertBannerView.m */; };
 		4C7830BE19F2F913000F5798 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7830BD19F2F913000F5798 /* iAd.framework */; };
 		4C96776219EE02E50057A52E /* MHSocialSharer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96776119EE02E50057A52E /* MHSocialSharer.m */; settings = {COMPILER_FLAGS = "-Wno-arc-performSelector-leaks"; }; };
 		4C96776419EE04D50057A52E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C96776319EE04D50057A52E /* Social.framework */; };
@@ -62,6 +63,8 @@
 		4C40132319A3B25300C3C262 /* MHQuoter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHQuoter.h; path = ../MHQuoter.h; sourceTree = "<group>"; };
 		4C40132419A3B25300C3C262 /* MHQuoter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHQuoter.m; path = ../MHQuoter.m; sourceTree = "<group>"; };
 		4C468A4619A6F36E002F87BB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		4C60C3761A17A5F400960F7F /* MHAlertBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHAlertBannerView.h; sourceTree = "<group>"; };
+		4C60C3771A17A5F400960F7F /* MHAlertBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHAlertBannerView.m; sourceTree = "<group>"; };
 		4C7830BD19F2F913000F5798 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		4C96776019EE02E50057A52E /* MHSocialSharer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHSocialSharer.h; sourceTree = "<group>"; };
 		4C96776119EE02E50057A52E /* MHSocialSharer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHSocialSharer.m; sourceTree = "<group>"; };
@@ -146,6 +149,8 @@
 				4C4012FD19A3B19600C3C262 /* MHAppDelegate.h */,
 				4C4012FE19A3B19600C3C262 /* MHAppDelegate.m */,
 				4C40130019A3B19600C3C262 /* Main.storyboard */,
+				4C60C3761A17A5F400960F7F /* MHAlertBannerView.h */,
+				4C60C3771A17A5F400960F7F /* MHAlertBannerView.m */,
 				4C40130319A3B19600C3C262 /* MHViewController.h */,
 				4C40130419A3B19600C3C262 /* MHViewController.m */,
 				4C96776019EE02E50057A52E /* MHSocialSharer.h */,
@@ -295,6 +300,7 @@
 				4CFC0A9E19D79BE500765F39 /* MHColorPicker.m in Sources */,
 				4C40132519A3B25300C3C262 /* MHQuoter.m in Sources */,
 				4C96776219EE02E50057A52E /* MHSocialSharer.m in Sources */,
+				4C60C3781A17A5F400960F7F /* MHAlertBannerView.m in Sources */,
 				4C4012FF19A3B19600C3C262 /* MHAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

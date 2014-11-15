@@ -19,8 +19,8 @@
     self.facebookAppID = appID;
     return self;
 }
-+(instancetype)sharerWithFacebookAppID:(NSString *)id{
-    return [[self alloc] initWithFacebookAppID:id];
++(instancetype)sharerWithFacebookAppID:(NSString *)appID{
+    return [[self alloc] initWithFacebookAppID:appID];
 }
 #pragma mark - User Editable Posts
 -(SLComposeViewController *)facebookPostWithMessage:(NSString *)message{
