@@ -10,6 +10,7 @@
 #import "MHQuoter.h"
 #import "MHColorPicker.h"
 #import "MHSocialSharer.h"
+#import "MHAlertBannerView.h"
 @import AudioToolbox;
 @import Social;
 @interface MHViewController ()
@@ -50,6 +51,11 @@
     self.textView.scrollEnabled = YES;
     //Just change this to YES to enable ad support
     self.canDisplayBannerAds = YES;
+    MHAlertBannerView *banner = [[MHAlertBannerView alloc] init];
+    banner.frame = CGRectMake(banner.frame.origin.x, 0, banner.frame.size.width, banner.frame.size.height);
+    banner.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:1];
+    banner.actionLabel.text = @"This is a test";
+    [self.view addSubview:banner];
 }
 -(void)viewWillLayoutSubviews{
     if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]){

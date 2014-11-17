@@ -12,4 +12,5 @@
 @property (strong, nonatomic) UIImageView *resultImageView;
 @property (strong, nonatomic) UIActivityIndicatorView *spinner;
 @property (strong, nonatomic) UIButton *cancelButton;
+-(void)dismissBanner;
 @end
