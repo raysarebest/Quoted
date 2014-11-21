@@ -70,11 +70,12 @@
     NSURL *feed = [NSURL URLWithString:@"https://graph.facebook.com/me/feed"];
     SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook requestMethod:SLRequestMethodPOST URL:feed parameters:params];
     request.account = account;
-    [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error){
-        if(error){
-            globalError = error;
-        }
-    }];
+//    [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error){
+//        if(error){
+//            globalError = error;
+//        }
+//    }];
+    NSURLConnection *post = [[NSURLConnection alloc] initWithRequest:[request preparedURLRequest] delegate:self startImmediately:YES];
     return globalError;
 }
 -(void)executeOptionalDelegateMethod:(SEL)method{
@@ -90,5 +91,12 @@
         _deviceAccounts = [[ACAccountStore alloc] init];
     }
     return _deviceAccounts;
+}
+#pragma mark - NSURLConnectionDelegate Methods
+-(BOOL)connectionShouldUseCredentialStorage:(NSURLConnection *)connection{
+    return NO;
+}
+-(void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge{
+    [challenge.sender performDefaultHandlingForAuthenticationChallenge:challenge];
 }
 @end

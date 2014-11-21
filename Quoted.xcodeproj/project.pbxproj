@@ -22,7 +22,7 @@
 		4C40131A19A3B19600C3C262 /* QuotedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C40131919A3B19600C3C262 /* QuotedTests.m */; };
 		4C40132519A3B25300C3C262 /* MHQuoter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C40132419A3B25300C3C262 /* MHQuoter.m */; };
 		4C468A4719A6F36E002F87BB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C468A4619A6F36E002F87BB /* AudioToolbox.framework */; };
-		4C60C3781A17A5F400960F7F /* MHAlertBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C60C3771A17A5F400960F7F /* MHAlertBannerView.m */; };
+		4C60C3781A17A5F400960F7F /* MHAlertBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C60C3771A17A5F400960F7F /* MHAlertBannerView.m */; settings = {COMPILER_FLAGS = "-Wno-arc-performSelector-leaks"; }; };
 		4C7830BE19F2F913000F5798 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7830BD19F2F913000F5798 /* iAd.framework */; };
 		4C96776219EE02E50057A52E /* MHSocialSharer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96776119EE02E50057A52E /* MHSocialSharer.m */; settings = {COMPILER_FLAGS = "-Wno-arc-performSelector-leaks"; }; };
 		4C96776419EE04D50057A52E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C96776319EE04D50057A52E /* Social.framework */; };
@@ -437,6 +437,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Quoted/Quoted-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = "Quoted/Quoted-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -455,6 +456,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Quoted/Quoted-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = "Quoted/Quoted-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";

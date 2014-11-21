@@ -10,7 +10,6 @@
 #import "MHQuoter.h"
 #import "MHColorPicker.h"
 #import "MHSocialSharer.h"
-#import "MHAlertBannerView.h"
 @import AudioToolbox;
 @import Social;
 @interface MHViewController ()
@@ -49,15 +48,21 @@
     [self.textView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
     [self.textView addObserver:self forKeyPath:@"center" options:NSKeyValueObservingOptionNew context:nil];
     self.textView.scrollEnabled = YES;
-    //Just change this to YES to enable ad support
     self.canDisplayBannerAds = YES;
-    MHAlertBannerView *banner = [[MHAlertBannerView alloc] init];
-    banner.frame = CGRectMake(banner.frame.origin.x, 0, banner.frame.size.width, banner.frame.size.height);
-    banner.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:1];
-    banner.actionLabel.text = @"This is a test";
-    [self.view addSubview:banner];
 }
 -(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    [self layoutSocialButtons];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self layoutSocialButtons];
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self layoutSocialButtons];
+}
+-(void)layoutSocialButtons{
     if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]){
         self.twitterButton.hidden = YES;
     }
@@ -66,9 +71,15 @@
     }
     if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]){
         self.facebookButton.hidden = YES;
+        if(!self.twitterButton.hidden){
+            self.twitterButton.center = self.facebookButton.center;
+        }
     }
     else{
         self.facebookButton.hidden = NO;
+        if(!self.twitterButton.hidden){
+            self.twitterButton.center = CGPointMake(self.facebookButton.center.x - 57, self.facebookButton.center.y);
+        }
     }
 }
 #pragma mark - Logic Essentials
@@ -112,7 +123,11 @@
 //    if(post){
 //        [self presentViewController:post animated:YES completion:nil];
 //    }
-    [self.social postToFacebookWithMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.textView.text, self.authorLabel.text]];
+    //[self.social postToFacebookWithMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.textView.text, self.authorLabel.text]];
+    MHAlertBannerView *banner = [MHAlertBannerView bannerWithBannerStyle:MHAlertBannerViewStyleFacebookPost];
+    banner.delegate = self;
+    [self.view addSubview:banner];
+    [banner presentBanner];
 }
 -(IBAction)postToTwitter:(UIButton *)sender{
     SLComposeViewController *tweet = [self.social tweetWithMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.textView.text, self.authorLabel.text]];
@@ -125,5 +140,12 @@
     CGFloat topCorrect = (self.textView.bounds.size.height - self.textView.contentSize.height * self.textView.zoomScale)/2.0;
     topCorrect = (topCorrect < 0.0 ? 0.0 : topCorrect);
     self.textView.contentOffset = (CGPoint){.x = 0, .y = -topCorrect};
+}
+#pragma mark - MHAlertBannerViewDelegate methods
+-(void)alertDidCancel:(MHAlertBannerView *)alert{
+    //I'll put the code to cancel the post here later
+}
+-(void)alertDidShow:(MHAlertBannerView *)alert{
+    [NSTimer scheduledTimerWithTimeInterval:3 target:alert selector:@selector(operationFailed) userInfo:nil repeats:NO];
 }
 @end

@@ -13,7 +13,7 @@
 @optional
 -(void)facebookPostDidFailWithError:(NSError *)error;
 @end
-@interface MHSocialSharer : NSObject
+@interface MHSocialSharer : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 @property (strong, nonatomic) NSString *facebookAppID;
 @property (strong, nonatomic) ACAccountStore *deviceAccounts;
 @property (assign, nonatomic) id<MHSocialDelegate> delegate;
