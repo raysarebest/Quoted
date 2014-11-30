@@ -123,7 +123,7 @@
 //    if(post){
 //        [self presentViewController:post animated:YES completion:nil];
 //    }
-    //[self.social postToFacebookWithMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.textView.text, self.authorLabel.text]];
+    [self.social postToFacebookWithMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.textView.text, self.authorLabel.text]];
     MHAlertBannerView *banner = [MHAlertBannerView bannerWithBannerStyle:MHAlertBannerViewStyleFacebookPost];
     banner.delegate = self;
     [self.view addSubview:banner];

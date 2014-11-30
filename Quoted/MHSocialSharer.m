@@ -10,17 +10,24 @@
 #import "MHSocialSharer.h"
 @interface MHSocialSharer()
 -(SLComposeViewController *)shareSheetForNetwork:(NSString *)network message:(NSString *)message;
--(NSError *)postMessageToFacebookAccount:(ACAccountType *)facebook message:(NSString *)message;
--(void)executeOptionalDelegateMethod:(SEL)method;
+-(NSURLConnection *)postMessageToFacebookAccount:(ACAccountType *)facebook message:(NSString *)message error:(NSError **)error;
 @end
 @implementation MHSocialSharer
 #pragma mark - Initializers
 -(instancetype)initWithFacebookAppID:(NSString *)appID{
-    self.facebookAppID = appID;
-    return self;
+    if(self = [super init]){
+        self.facebookAppID = appID;
+        return self;
+    }
+    return nil;
 }
 +(instancetype)sharerWithFacebookAppID:(NSString *)appID{
-    return [[self alloc] initWithFacebookAppID:appID];
+    static MHSocialSharer *singleton = nil;
+    static dispatch_once_t token;
+    dispatch_once(&token, ^{
+        singleton = [[self alloc] initWithFacebookAppID:appID];
+    });
+    return singleton;
 }
 #pragma mark - User Editable Posts
 -(SLComposeViewController *)facebookPostWithMessage:(NSString *)message{
@@ -38,34 +45,62 @@
     return nil;
 }
 #pragma mark - App Dictated Posts
--(NSError *)postToFacebookWithMessage:(NSString *)message{
+-(void)postToFacebookWithMessage:(NSString *)message{
+    __block NSURLConnection *post = nil;
     __block NSError *globalError = nil;
     ACAccountType *facebook = [self.deviceAccounts accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
     NSDictionary *options = @{ACFacebookAppIdKey:self.facebookAppID, ACFacebookPermissionsKey:@[@"publish_actions"], ACFacebookAudienceKey:ACFacebookAudienceFriends};
     if(facebook.accessGranted == NO){
         [self.deviceAccounts requestAccessToAccountsWithType:facebook options:options completion:^(BOOL granted, NSError *error){
             if(granted && error == nil){
-                globalError = [self postMessageToFacebookAccount:facebook message:message];
+                post = [self postMessageToFacebookAccount:facebook message:message error:&globalError];
+                if(globalError){
+                    if([(NSObject *)self.delegate respondsToSelector:@selector(postToService:didFailWithError:)]){
+                        [self.delegate postToService:SLServiceTypeFacebook didFailWithError:globalError];
+                    }
+                }
             }
             else if (granted == YES && error != nil){
-                globalError = error;
+                if([(NSObject *)self.delegate respondsToSelector:@selector(postToService:didFailWithError:)]){
+                    [self.delegate postToService:SLServiceTypeFacebook didFailWithError:error];
+                }
             }
             else{
-                globalError = [NSError errorWithDomain:@"FBUserAuth" code:403 userInfo:nil];
+                if([(NSObject *)self.delegate respondsToSelector:@selector(postToService:didFailWithError:)]){
+                    [self.delegate postToService:SLServiceTypeFacebook didFailWithError:[NSError errorWithDomain:@"FBUserAuth" code:403 userInfo:nil]];
+                }
             }
         }];
     }
     else{
         //We're free to post, have fun
-        globalError = [self postMessageToFacebookAccount:facebook message:message];
+        post = [self postMessageToFacebookAccount:facebook message:message error:&globalError];
+        if(globalError){
+            if([(NSObject *)self.delegate respondsToSelector:@selector(postToService:didFailWithError:)]){
+                [self.delegate postToService:SLServiceTypeFacebook didFailWithError:globalError];
+            }
+        }
     }
-    return globalError;
+    if(post){
+        [self.requests addObject:post];
+    }
 }
 #pragma mark - Private Helper Methods
--(NSError *)postMessageToFacebookAccount:(ACAccountType *)facebook message:(NSString *)message{
-    __block NSError *globalError = nil;
+-(NSURLConnection *)postMessageToFacebookAccount:(ACAccountType *)facebook message:(NSString *)message error:(NSError **)error{
     NSArray *accounts = [self.deviceAccounts accountsWithAccountType:facebook];
-    ACAccount * account = [accounts lastObject];
+    ACAccount *account = nil;
+    if(accounts.count > 1){
+        if([(NSObject *)self.delegate respondsToSelector:@selector(accountForAccountType:)]){
+            account = [self.delegate accountForAccountType:facebook];
+        }
+    }
+    else if(accounts.count == 1){
+        account = accounts.lastObject;
+    }
+    else{
+        *error = [NSError errorWithDomain:@"MHNotFoundError" code:404 userInfo:@{NSLocalizedDescriptionKey:@"No accounts found", NSLocalizedFailureReasonErrorKey:@"You are not logged into your Facebook account!", NSLocalizedRecoverySuggestionErrorKey:@"Please log into your Facebook account in the Settings app"}];
+        return nil;
+    }
     NSDictionary *params = @{@"message":message};
     NSURL *feed = [NSURL URLWithString:@"https://graph.facebook.com/me/feed"];
     SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook requestMethod:SLRequestMethodPOST URL:feed parameters:params];
@@ -76,14 +111,8 @@
 //        }
 //    }];
     NSURLConnection *post = [[NSURLConnection alloc] initWithRequest:[request preparedURLRequest] delegate:self startImmediately:YES];
-    return globalError;
-}
--(void)executeOptionalDelegateMethod:(SEL)method{
-    NSObject *delegate = (NSObject *)self.delegate;
-    if([delegate respondsToSelector:method]){
-        //Apple LLVM generates a warning here. performSelector may cause a leak because the selector is unknown. If anything terrible happens here, find this file in the "Compile Sources" section of the "Build Phases" tab in the Project Navigator, and delete the only flag that's there
-        [delegate performSelector:method];
-    }
+    [self.requests addObject:post];
+    return post;
 }
 #pragma mark - Property Lazy Instantiation
 -(ACAccountStore *)deviceAccounts{
@@ -91,6 +120,12 @@
         _deviceAccounts = [[ACAccountStore alloc] init];
     }
     return _deviceAccounts;
+}
+-(NSMutableArray *)requests{
+    if(!_requests){
+        _requests = [[NSMutableArray alloc] init];
+    }
+    return _requests;
 }
 #pragma mark - NSURLConnectionDelegate Methods
 -(BOOL)connectionShouldUseCredentialStorage:(NSURLConnection *)connection{

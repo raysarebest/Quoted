@@ -88,7 +88,6 @@
 }
 #pragma mark - Completion Methods
 -(void)operationSucceeded{
-    NSLog(@"Method fired");
     [UIView animateWithDuration:.25 animations:^{
         self.backgroundColor = [UIColor colorWithRed:0 green:200.0/255.0f blue:0 alpha:1];
     }];
