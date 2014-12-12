@@ -22,6 +22,7 @@ typedef NS_ENUM(int16_t, MHAlertBannerViewStyle){
 -(void)alertWasTouched:(MHAlertBannerView *)alert;
 @end
 @interface MHAlertBannerView : UIView
+@property (nonatomic) id watchedObject;
 @property (strong, nonatomic) UILabel *actionLabel;
 @property (strong, nonatomic) UIImageView *resultImageView;
 @property (strong, nonatomic) UIImage *successImage;

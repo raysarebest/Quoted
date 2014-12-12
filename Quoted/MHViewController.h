@@ -7,12 +7,12 @@
 //
 
 #import "MHAlertBannerView.h"
+#import "MHSocialSharer.h"
 @import UIKit;
 @import iAd;
 @class MHQuoter;
 @class MHColorPicker;
-@class MHSocialSharer;
-@interface MHViewController : UIViewController <ADBannerViewDelegate, MHAlertBannerViewDelegate>
+@interface MHViewController : UIViewController <ADBannerViewDelegate, MHAlertBannerViewDelegate, MHSocialDelegate>
 @property (strong, nonatomic) MHQuoter *quoter;
 @property (strong, nonatomic) MHColorPicker *colorPicker;
 @property (strong, nonatomic) MHSocialSharer *social;

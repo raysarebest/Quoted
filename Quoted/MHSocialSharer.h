@@ -10,9 +10,9 @@
 @import Accounts;
 @import Social;
 @protocol MHSocialDelegate
--(void)postToService:(NSString *)service didFailWithError:(NSError *)error;
--(void)postToService:(NSString *) didSucceed;
+-(void)post:(NSURLConnection *)post didFailWithError:(NSError *)error;
 @optional
+-(void)postSucceeded:(NSURLConnection *)post;
 -(ACAccount *)accountForAccountType:(ACAccountType *)accountType;
 @end
 @interface MHSocialSharer : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
@@ -24,5 +24,6 @@
 +(instancetype)sharerWithFacebookAppID:(NSString *)appID;
 -(SLComposeViewController *)facebookPostWithMessage:(NSString *)message;
 -(SLComposeViewController *)tweetWithMessage:(NSString *)message;
--(void)postToFacebookWithMessage:(NSString *)message;
+-(BOOL)postToFacebookWithMessage:(NSString *)message;
+-(void)cancelPost:(NSURLConnection *)post;
 @end

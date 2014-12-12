@@ -10,7 +10,9 @@
 #import "MHSocialSharer.h"
 @interface MHSocialSharer()
 -(SLComposeViewController *)shareSheetForNetwork:(NSString *)network message:(NSString *)message;
--(NSURLConnection *)postMessageToFacebookAccount:(ACAccountType *)facebook message:(NSString *)message error:(NSError **)error;
+-(NSURLConnection *)postMessageToFacebookAccount:(NSString *)message error:(NSError **)error;
+-(void)removeConnection:(NSURLConnection *)connection;
+-(NSURLRequest *)requestForMessage:(NSString *)message withAccount:(ACAccount *)account;
 @end
 @implementation MHSocialSharer
 #pragma mark - Initializers
@@ -45,74 +47,77 @@
     return nil;
 }
 #pragma mark - App Dictated Posts
--(void)postToFacebookWithMessage:(NSString *)message{
+-(BOOL)postToFacebookWithMessage:(NSString *)message{
     __block NSURLConnection *post = nil;
+    __block BOOL result = YES;
     __block NSError *globalError = nil;
     ACAccountType *facebook = [self.deviceAccounts accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
-    NSDictionary *options = @{ACFacebookAppIdKey:self.facebookAppID, ACFacebookPermissionsKey:@[@"publish_actions"], ACFacebookAudienceKey:ACFacebookAudienceFriends};
     if(facebook.accessGranted == NO){
-        [self.deviceAccounts requestAccessToAccountsWithType:facebook options:options completion:^(BOOL granted, NSError *error){
+        [self.deviceAccounts requestAccessToAccountsWithType:facebook options:@{ACFacebookAppIdKey:self.facebookAppID, ACFacebookPermissionsKey:@[@"publish_actions"], ACFacebookAudienceKey:ACFacebookAudienceFriends} completion:^(BOOL granted, NSError *error){
             if(granted && error == nil){
-                post = [self postMessageToFacebookAccount:facebook message:message error:&globalError];
-                if(globalError){
-                    if([(NSObject *)self.delegate respondsToSelector:@selector(postToService:didFailWithError:)]){
-                        [self.delegate postToService:SLServiceTypeFacebook didFailWithError:globalError];
-                    }
-                }
-            }
-            else if (granted == YES && error != nil){
-                if([(NSObject *)self.delegate respondsToSelector:@selector(postToService:didFailWithError:)]){
-                    [self.delegate postToService:SLServiceTypeFacebook didFailWithError:error];
-                }
+                post = [self postMessageToFacebookAccount:message error:&globalError];
             }
             else{
-                if([(NSObject *)self.delegate respondsToSelector:@selector(postToService:didFailWithError:)]){
-                    [self.delegate postToService:SLServiceTypeFacebook didFailWithError:[NSError errorWithDomain:@"FBUserAuth" code:403 userInfo:nil]];
-                }
+                result = NO;
             }
         }];
     }
     else{
         //We're free to post, have fun
-        post = [self postMessageToFacebookAccount:facebook message:message error:&globalError];
-        if(globalError){
-            if([(NSObject *)self.delegate respondsToSelector:@selector(postToService:didFailWithError:)]){
-                [self.delegate postToService:SLServiceTypeFacebook didFailWithError:globalError];
-            }
-        }
+        post = [self postMessageToFacebookAccount:message error:&globalError];
     }
     if(post){
         [self.requests addObject:post];
     }
+    if(globalError){
+        result = NO;
+    }
+    return result;
+}
+-(void)cancelPost:(NSURLConnection *)post{
+    if([self.requests containsObject:post]){
+        [post cancel];
+        [self.requests removeObject:post];
+    }
 }
 #pragma mark - Private Helper Methods
--(NSURLConnection *)postMessageToFacebookAccount:(ACAccountType *)facebook message:(NSString *)message error:(NSError **)error{
-    NSArray *accounts = [self.deviceAccounts accountsWithAccountType:facebook];
+-(NSURLConnection *)postMessageToFacebookAccount:(NSString *)message error:(NSError **)error{
+    NSArray *accounts = [self.deviceAccounts accountsWithAccountType:[self.deviceAccounts accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook]];
     ACAccount *account = nil;
     if(accounts.count > 1){
+#warning Need to Implement accountForAccountType: in View Controller
         if([(NSObject *)self.delegate respondsToSelector:@selector(accountForAccountType:)]){
-            account = [self.delegate accountForAccountType:facebook];
+            account = [self.delegate accountForAccountType:[self.deviceAccounts accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook]];
         }
     }
     else if(accounts.count == 1){
         account = accounts.lastObject;
+
     }
     else{
-        *error = [NSError errorWithDomain:@"MHNotFoundError" code:404 userInfo:@{NSLocalizedDescriptionKey:@"No accounts found", NSLocalizedFailureReasonErrorKey:@"You are not logged into your Facebook account!", NSLocalizedRecoverySuggestionErrorKey:@"Please log into your Facebook account in the Settings app"}];
+        *error = [NSError errorWithDomain:@"MHSocialError" code:404 userInfo:@{NSLocalizedDescriptionKey:@"No accounts found", NSLocalizedFailureReasonErrorKey:@"You are not logged into your Facebook account!", NSLocalizedRecoverySuggestionErrorKey:@"Please log into your Facebook account in the Settings app"}];
         return nil;
     }
-    NSDictionary *params = @{@"message":message};
-    NSURL *feed = [NSURL URLWithString:@"https://graph.facebook.com/me/feed"];
-    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook requestMethod:SLRequestMethodPOST URL:feed parameters:params];
+    NSURLRequest *post = [self requestForMessage:message withAccount:account];
+    if([NSURLConnection canHandleRequest:post]){
+        return [[NSURLConnection alloc] initWithRequest:post delegate:self startImmediately:YES];
+    }
+    else{
+        NSError *postError = [NSError errorWithDomain:@"MHSocialError" code:1 userInfo:@{NSLocalizedDescriptionKey:@"The post could not be completed", NSLocalizedDescriptionKey:@"An unknown error occurred", NSLocalizedRecoverySuggestionErrorKey:@"Please make sure you're connected to the internet and logged into your Facebook account in the Settings app"}];
+        [self.delegate post:[[NSURLConnection alloc] initWithRequest:post delegate:nil startImmediately:NO] didFailWithError:postError];
+        *error = postError;
+        return nil;
+    }
+}
+-(void)removeConnection:(NSURLConnection *)connection{
+    if([self.requests containsObject:connection]){
+        [self.requests removeObject:connection];
+    }
+}
+-(NSURLRequest *)requestForMessage:(NSString *)message withAccount:(ACAccount *)account{
+    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook requestMethod:SLRequestMethodPOST URL:[NSURL URLWithString:@"https://graph.facebook.com/me/feed"] parameters:@{@"message":message}];
     request.account = account;
-//    [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error){
-//        if(error){
-//            globalError = error;
-//        }
-//    }];
-    NSURLConnection *post = [[NSURLConnection alloc] initWithRequest:[request preparedURLRequest] delegate:self startImmediately:YES];
-    [self.requests addObject:post];
-    return post;
+    return [request preparedURLRequest];
 }
 #pragma mark - Property Lazy Instantiation
 -(ACAccountStore *)deviceAccounts{
@@ -133,5 +138,22 @@
 }
 -(void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge{
     [challenge.sender performDefaultHandlingForAuthenticationChallenge:challenge];
+}
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
+    //TODO: Account for networks other than Facebook
+    if([connection.originalRequest.URL.absoluteString containsString:@"facebook"]){
+        [self.delegate post:connection didFailWithError:error];
+    }
+    [self removeConnection:connection];
+}
+#pragma mark - NSURLConnectionDataDelegate Methods
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection{
+    if([(NSObject *)self.delegate respondsToSelector:@selector(postSucceeded:)]){
+        //TODO: Account for networks other than Facebook
+        if([connection.originalRequest.URL.absoluteString containsString:@"facebook"]){
+            [self.delegate postSucceeded:connection];
+        }
+    }
+    [self removeConnection:connection];
 }
 @end

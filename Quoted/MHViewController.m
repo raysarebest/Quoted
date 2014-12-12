@@ -13,6 +13,7 @@
 @import AudioToolbox;
 @import Social;
 @interface MHViewController ()
+@property (strong, nonatomic) NSMutableArray *banners;
 -(void)randomQuoteWithVibration:(BOOL)vibration;
 -(void)quoteAreaWasTapped;
 @end
@@ -37,6 +38,12 @@
     }
     return _social;
 }
+-(NSMutableArray *)banners{
+    if(!_banners){
+        _banners = [[NSMutableArray alloc] init];
+    }
+    return _banners;
+}
 #pragma mark - View Setup Code
 -(void)viewDidLoad{
     [super viewDidLoad];
@@ -49,6 +56,7 @@
     [self.textView addObserver:self forKeyPath:@"center" options:NSKeyValueObservingOptionNew context:nil];
     self.textView.scrollEnabled = YES;
     self.canDisplayBannerAds = YES;
+    self.social.delegate = self;
 }
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
@@ -119,15 +127,19 @@
 }
 #pragma mark - Social Buttons
 -(IBAction)postToFacebook:(UIButton *)sender{
-//    SLComposeViewController *post = [self.social facebookPostWithMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.textView.text, self.authorLabel.text]];
-//    if(post){
-//        [self presentViewController:post animated:YES completion:nil];
-//    }
-    [self.social postToFacebookWithMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.textView.text, self.authorLabel.text]];
     MHAlertBannerView *banner = [MHAlertBannerView bannerWithBannerStyle:MHAlertBannerViewStyleFacebookPost];
     banner.delegate = self;
-    [self.view addSubview:banner];
-    [banner presentBanner];
+    if([self.social postToFacebookWithMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.textView.text, self.authorLabel.text]]){
+        banner.watchedObject = self.social.requests.lastObject;
+        NSLog(@"%@\n\n%@", banner.watchedObject, self.social.requests.lastObject);
+        [self.view addSubview:banner];
+        [banner presentBanner];
+        [self.banners addObject:banner];
+    }
+    else{
+        [banner presentBanner];
+        [banner operationFailed];
+    }
 }
 -(IBAction)postToTwitter:(UIButton *)sender{
     SLComposeViewController *tweet = [self.social tweetWithMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.textView.text, self.authorLabel.text]];
@@ -141,11 +153,27 @@
     topCorrect = (topCorrect < 0.0 ? 0.0 : topCorrect);
     self.textView.contentOffset = (CGPoint){.x = 0, .y = -topCorrect};
 }
-#pragma mark - MHAlertBannerViewDelegate methods
+#pragma mark - MHAlertBannerViewDelegate Methods
 -(void)alertDidCancel:(MHAlertBannerView *)alert{
-    //I'll put the code to cancel the post here later
+    [self.social cancelPost:alert.watchedObject];
 }
--(void)alertDidShow:(MHAlertBannerView *)alert{
-    [NSTimer scheduledTimerWithTimeInterval:3 target:alert selector:@selector(operationFailed) userInfo:nil repeats:NO];
+#pragma mark - MHSocialDelegate Methods
+-(void)post:(NSURLConnection *)post didFailWithError:(NSError *)error{
+    NSLog(@"Post Failed");
+    for(MHAlertBannerView *banner in self.banners){
+        if(banner.watchedObject == post){
+            [banner operationFailed];
+            [self.banners removeObject:banner];
+        }
+    }
+}
+-(void)postSucceeded:(NSURLConnection *)post{
+    NSLog(@"Post Succeeded");
+    for(MHAlertBannerView *banner in self.banners){
+        if(banner.watchedObject == post){
+            [banner operationSucceeded];
+            [self.banners removeObject:banner];
+        }
+    }
 }
 @end

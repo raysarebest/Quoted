@@ -95,6 +95,7 @@
     self.resultImageView.image = self.successImage;
     self.spinner.hidden = YES;
     self.resultImageView.hidden = NO;
+    self.cancelButton.enabled = NO;
     [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(dismissBanner) userInfo:nil repeats:NO];
 }
 -(void)operationFailed{
@@ -105,6 +106,7 @@
     self.resultImageView.image = self.failImage;
     self.spinner.hidden = YES;
     self.resultImageView.hidden = NO;
+    self.cancelButton.enabled = NO;
     [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(dismissBanner) userInfo:nil repeats:NO];
 }
 #pragma mark - Property Lazy Instantiation
