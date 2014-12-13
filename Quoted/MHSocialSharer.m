@@ -85,7 +85,6 @@
     NSArray *accounts = [self.deviceAccounts accountsWithAccountType:[self.deviceAccounts accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook]];
     ACAccount *account = nil;
     if(accounts.count > 1){
-#warning Need to Implement accountForAccountType: in View Controller
         if([(NSObject *)self.delegate respondsToSelector:@selector(accountForAccountType:)]){
             account = [self.delegate accountForAccountType:[self.deviceAccounts accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook]];
         }

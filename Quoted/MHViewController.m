@@ -14,8 +14,11 @@
 @import Social;
 @interface MHViewController ()
 @property (strong, nonatomic) NSMutableArray *banners;
+@property (strong, nonatomic) ACAccount *preferredAccount;
+@property (nonatomic, getter=accountPickerIsShowing) BOOL accountPickerShowing;
 -(void)randomQuoteWithVibration:(BOOL)vibration;
 -(void)quoteAreaWasTapped;
+-(void)selectAccountForAccountType:(ACAccountType *)type completion:(void (^)(ACAccount *))handler;
 @end
 @implementation MHViewController
 //I'm supposed to add random animations into this app at some point, but I really don't feel like it. Maybe I'll do it later
@@ -43,6 +46,12 @@
         _banners = [[NSMutableArray alloc] init];
     }
     return _banners;
+}
+-(ACAccount *)preferredAccount{
+    if(!_preferredAccount){
+        _preferredAccount = [[ACAccount alloc] init];
+    }
+    return _preferredAccount;
 }
 #pragma mark - View Setup Code
 -(void)viewDidLoad{
@@ -129,6 +138,21 @@
 -(IBAction)postToFacebook:(UIButton *)sender{
     MHAlertBannerView *banner = [MHAlertBannerView bannerWithBannerStyle:MHAlertBannerViewStyleFacebookPost];
     banner.delegate = self;
+    if(self.social.deviceAccounts.accounts.count > 1){
+        [self selectAccountForAccountType:[self.social.deviceAccounts accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook] completion:^(ACAccount *account){
+            if([self.social postToFacebookWithMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.textView.text, self.authorLabel.text]]){
+                banner.watchedObject = self.social.requests.lastObject;
+                NSLog(@"%@\n\n%@", banner.watchedObject, self.social.requests.lastObject);
+                [self.view addSubview:banner];
+                [banner presentBanner];
+                [self.banners addObject:banner];
+            }
+            else{
+                [banner presentBanner];
+                [banner operationFailed];
+            }
+         }];
+    }
     if([self.social postToFacebookWithMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.textView.text, self.authorLabel.text]]){
         banner.watchedObject = self.social.requests.lastObject;
         NSLog(@"%@\n\n%@", banner.watchedObject, self.social.requests.lastObject);
@@ -140,6 +164,43 @@
         [banner presentBanner];
         [banner operationFailed];
     }
+}
+-(void)selectAccountForAccountType:(ACAccountType *)type completion:(void (^)(ACAccount *))handler{
+    NSArray *accounts = [self.social.deviceAccounts accountsWithAccountType:type];
+    if([UIDevice currentDevice].systemVersion.floatValue >= 8){
+        UIAlertController *picker = [UIAlertController alertControllerWithTitle:@"Select an Account" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        for(ACAccount *account in accounts){
+            UIAlertAction *option = [UIAlertAction actionWithTitle:account.username style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                self.preferredAccount = account;
+            }];
+            [picker addAction:option];
+        }
+        [self presentViewController:picker animated:YES completion:nil];
+        self.accountPickerShowing = YES;
+        while(self.accountPickerIsShowing){
+            //We just have to chooose the most fuckING DANGEROUS, PRIMITIVE WAY TO WAIT FOR IT TO CLOSE
+            continue;
+        }
+        handler(self.preferredAccount);
+        self.preferredAccount = nil;
+        self.accountPickerShowing = NO;
+    }
+    else{
+        UIActionSheet *picker = [[UIActionSheet alloc] initWithTitle:@"Select an Account" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:nil];
+        for(ACAccount *account in accounts){
+            //Currently, we're using the account's identifier, and not the username, because it's easier that way
+            [picker addButtonWithTitle:account.identifier];
+        }
+        [picker showInView:self.view];
+    }
+    self.accountPickerShowing = YES;
+    while(self.accountPickerIsShowing){
+        //We just have to chooose the most fuckING DANGEROUS, PRIMITIVE WAY TO WAIT FOR IT TO CLOSE
+        continue;
+    }
+    handler(self.preferredAccount);
+    self.preferredAccount = nil;
+    self.accountPickerShowing = NO;
 }
 -(IBAction)postToTwitter:(UIButton *)sender{
     SLComposeViewController *tweet = [self.social tweetWithMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.textView.text, self.authorLabel.text]];
@@ -175,5 +236,13 @@
             [self.banners removeObject:banner];
         }
     }
+}
+-(ACAccount *)accountForAccountType:(ACAccountType *)accountType{
+    return self.preferredAccount;
+}
+#pragma mark - UIActionSheetDelegate Methods
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    //TODO: Wait for button to be selected, assign self.preferred account to selected button title
+    self.preferredAccount = [self.social.deviceAccounts accountWithIdentifier:[actionSheet buttonTitleAtIndex:buttonIndex]];
 }
 @end

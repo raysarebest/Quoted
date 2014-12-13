@@ -12,7 +12,7 @@
 @import iAd;
 @class MHQuoter;
 @class MHColorPicker;
-@interface MHViewController : UIViewController <ADBannerViewDelegate, MHAlertBannerViewDelegate, MHSocialDelegate>
+@interface MHViewController : UIViewController <ADBannerViewDelegate, MHAlertBannerViewDelegate, MHSocialDelegate, UIActionSheetDelegate>
 @property (strong, nonatomic) MHQuoter *quoter;
 @property (strong, nonatomic) MHColorPicker *colorPicker;
 @property (strong, nonatomic) MHSocialSharer *social;
