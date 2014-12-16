@@ -10,13 +10,12 @@
 #define bannerHeight 44
 @interface MHAlertBannerView()
 @property (nonatomic) CGFloat statusBarHeight;
-@property (nonatomic) MHAlertBannerViewStyle style;
 -(void)cancel;
 @end
 @implementation MHAlertBannerView
 #pragma mark - Initializers
 -(instancetype)init{
-    //Need to initialize success and fail images, when I set defaults
+    //FIXME: Need to initialize success and fail images, when I set defaults
     self = [[MHAlertBannerView alloc] initWithFrame:CGRectMake(0, -bannerHeight - self.statusBarHeight, [UIScreen mainScreen].bounds.size.width, bannerHeight + self.statusBarHeight)];
     self.resultImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8 + self.statusBarHeight, 28, 28)];
     self.resultImageView.hidden = YES;
@@ -32,6 +31,7 @@
     [self.spinner startAnimating];
     [self addSubview:self.cancelButton];
     [self addSubview:self.actionLabel];
+    self.style = MHAlertBannerViewStyleCustom;
     return self;
 }
 +(MHAlertBannerView *)bannerWithBannerStyle:(MHAlertBannerViewStyle)style{
@@ -45,6 +45,7 @@
     }
     else if(style == MHAlertBannerViewStyleTwitterPost){
         banner.backgroundColor = [UIColor colorWithRed:85.0/255.0f green:172.0/255.0f blue:238/255.0f alpha:1];
+        //FIXME: Need to add images
         banner.actionLabel.text = @"Tweeting...";
     }
     return banner;
@@ -71,6 +72,7 @@
         if([delegate respondsToSelector:@selector(alertDidDisappear:)]){
             [delegate alertDidDisappear:self];
         }
+        [self removeFromSuperview];
     }];
 }
 -(void)presentBanner{
@@ -87,7 +89,7 @@
     }];
 }
 #pragma mark - Completion Methods
--(void)operationSucceeded{
+-(void)operationSucceededWithMessage:(NSString *)message{
     [UIView animateWithDuration:.25 animations:^{
         self.backgroundColor = [UIColor colorWithRed:0 green:200.0/255.0f blue:0 alpha:1];
     }];
@@ -96,9 +98,10 @@
     self.spinner.hidden = YES;
     self.resultImageView.hidden = NO;
     self.cancelButton.enabled = NO;
+    self.actionLabel.text = message;
     [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(dismissBanner) userInfo:nil repeats:NO];
 }
--(void)operationFailed{
+-(void)operationFailedWithMessage:(NSString *)message{
     [UIView animateWithDuration:.25 animations:^{
         self.backgroundColor = [UIColor colorWithRed:200.0/255.0f green:0 blue:0 alpha:1];
     }];
@@ -107,6 +110,7 @@
     self.spinner.hidden = YES;
     self.resultImageView.hidden = NO;
     self.cancelButton.enabled = NO;
+    self.actionLabel.text = message;
     [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(dismissBanner) userInfo:nil repeats:NO];
 }
 #pragma mark - Property Lazy Instantiation

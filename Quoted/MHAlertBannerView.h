@@ -9,7 +9,8 @@
 @import UIKit;
 typedef NS_ENUM(int16_t, MHAlertBannerViewStyle){
     MHAlertBannerViewStyleFacebookPost,
-    MHAlertBannerViewStyleTwitterPost
+    MHAlertBannerViewStyleTwitterPost,
+    MHAlertBannerViewStyleCustom
 };
 @class MHAlertBannerView;
 @protocol MHAlertBannerViewDelegate
@@ -30,10 +31,11 @@ typedef NS_ENUM(int16_t, MHAlertBannerViewStyle){
 @property (strong, nonatomic) UIActivityIndicatorView *spinner;
 @property (strong, nonatomic) UIButton *cancelButton;
 @property (strong, nonatomic) id<MHAlertBannerViewDelegate> delegate;
+@property (nonatomic) MHAlertBannerViewStyle style;
 //Designated initializer, though init is acceptable for custom banner
 +(MHAlertBannerView *)bannerWithBannerStyle:(MHAlertBannerViewStyle)style;
 -(void)dismissBanner;
 -(void)presentBanner;
--(void)operationSucceeded;
--(void)operationFailed;
+-(void)operationSucceededWithMessage:(NSString *)message;
+-(void)operationFailedWithMessage:(NSString *)message;
 @end

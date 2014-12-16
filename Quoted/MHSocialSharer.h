@@ -24,6 +24,6 @@
 +(instancetype)sharerWithFacebookAppID:(NSString *)appID;
 -(SLComposeViewController *)facebookPostWithMessage:(NSString *)message;
 -(SLComposeViewController *)tweetWithMessage:(NSString *)message;
--(BOOL)postToFacebookWithMessage:(NSString *)message;
+-(BOOL)postToNetwork:(NSString *)network withMessage:(NSString *)message;
 -(void)cancelPost:(NSURLConnection *)post;
 @end

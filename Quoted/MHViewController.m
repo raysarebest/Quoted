@@ -15,12 +15,19 @@
 @interface MHViewController ()
 @property (strong, nonatomic) NSMutableArray *banners;
 @property (strong, nonatomic) ACAccount *preferredAccount;
-@property (nonatomic, getter=accountPickerIsShowing) BOOL accountPickerShowing;
+@property (copy) void (^accountSelectionCompletion)(ACAccount *);
 -(void)randomQuoteWithVibration:(BOOL)vibration;
 -(void)quoteAreaWasTapped;
 -(void)selectAccountForAccountType:(ACAccountType *)type completion:(void (^)(ACAccount *))handler;
+-(void)presentBannerWithStyle:(MHAlertBannerViewStyle)style failure:(BOOL)status;
+-(void)postQuoteToNetwork:(NSString *)network;
 @end
 @implementation MHViewController
+//Generic posting message constants
+NSString *const MHFacebookPostSuccessMessage = @"Posted!";
+NSString *const MHFacebookPostFailureMessage = @"Post to Facebook Failed!";
+NSString *const MHTweetSuccessMessage = @"Tweeted!";
+NSString *const MHTweetFailureMessage = @"Tweet Failed!";
 //I'm supposed to add random animations into this app at some point, but I really don't feel like it. Maybe I'll do it later
 #pragma mark - Object Initializers
 -(MHQuoter *)quoter{
@@ -41,17 +48,17 @@
     }
     return _social;
 }
--(NSMutableArray *)banners{
-    if(!_banners){
-        _banners = [[NSMutableArray alloc] init];
-    }
-    return _banners;
-}
 -(ACAccount *)preferredAccount{
     if(!_preferredAccount){
         _preferredAccount = [[ACAccount alloc] init];
     }
     return _preferredAccount;
+}
+-(NSMutableArray *)banners{
+    if(!_banners){
+        _banners = [[NSMutableArray alloc] init];
+    }
+    return _banners;
 }
 #pragma mark - View Setup Code
 -(void)viewDidLoad{
@@ -122,6 +129,36 @@
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     }
 }
+-(void)postQuoteToNetwork:(NSString *)network{
+    //If support for more networks is added in the future, it will need to be added here, too
+    MHAlertBannerViewStyle style = MHAlertBannerViewStyleCustom;
+    if([network isEqualToString:ACAccountTypeIdentifierFacebook]){
+        style = MHAlertBannerViewStyleFacebookPost;
+    }
+    else if([network isEqualToString:ACAccountTypeIdentifierTwitter]){
+        style = MHAlertBannerViewStyleTwitterPost;
+    }
+    if([self.social.deviceAccounts accountsWithAccountType:[self.social.deviceAccounts accountTypeWithAccountTypeIdentifier:network]].count > 1){
+        [self selectAccountForAccountType:[self.social.deviceAccounts accountTypeWithAccountTypeIdentifier:network] completion:^(ACAccount *account){
+            if([self.social postToNetwork:network withMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.textView.text, self.authorLabel.text]]){
+                [self presentBannerWithStyle:style failure:NO];
+            }
+            else{
+                [self presentBannerWithStyle:style failure:YES];
+            }
+        }];
+    }
+    else{
+        if([self.social postToNetwork:network withMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.textView.text, self.authorLabel.text]]){
+            [self presentBannerWithStyle:style failure:NO];
+            NSLog(@"Free to post");
+        }
+        else{
+            [self presentBannerWithStyle:style failure:YES];
+            NSLog(@"Can't post");
+        }
+    }
+}
 #pragma mark - User Input Handling
 -(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
     if(motion == UIEventSubtypeMotionShake){
@@ -136,76 +173,36 @@
 }
 #pragma mark - Social Buttons
 -(IBAction)postToFacebook:(UIButton *)sender{
-    MHAlertBannerView *banner = [MHAlertBannerView bannerWithBannerStyle:MHAlertBannerViewStyleFacebookPost];
-    banner.delegate = self;
-    if(self.social.deviceAccounts.accounts.count > 1){
-        [self selectAccountForAccountType:[self.social.deviceAccounts accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook] completion:^(ACAccount *account){
-            if([self.social postToFacebookWithMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.textView.text, self.authorLabel.text]]){
-                banner.watchedObject = self.social.requests.lastObject;
-                NSLog(@"%@\n\n%@", banner.watchedObject, self.social.requests.lastObject);
-                [self.view addSubview:banner];
-                [banner presentBanner];
-                [self.banners addObject:banner];
-            }
-            else{
-                [banner presentBanner];
-                [banner operationFailed];
-            }
-         }];
-    }
-    if([self.social postToFacebookWithMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.textView.text, self.authorLabel.text]]){
-        banner.watchedObject = self.social.requests.lastObject;
-        NSLog(@"%@\n\n%@", banner.watchedObject, self.social.requests.lastObject);
-        [self.view addSubview:banner];
-        [banner presentBanner];
-        [self.banners addObject:banner];
-    }
-    else{
-        [banner presentBanner];
-        [banner operationFailed];
-    }
+    [self postQuoteToNetwork:ACAccountTypeIdentifierFacebook];
+}
+-(IBAction)postToTwitter:(UIButton *)sender{
+    [self postQuoteToNetwork:ACAccountTypeIdentifierTwitter];
 }
 -(void)selectAccountForAccountType:(ACAccountType *)type completion:(void (^)(ACAccount *))handler{
+    self.accountSelectionCompletion = handler;
+    NSString *prefix = [NSString string];
+    if([type.identifier isEqualToString:ACAccountTypeIdentifierTwitter]){
+        prefix = @"@";
+    }
     NSArray *accounts = [self.social.deviceAccounts accountsWithAccountType:type];
     if([UIDevice currentDevice].systemVersion.floatValue >= 8){
         UIAlertController *picker = [UIAlertController alertControllerWithTitle:@"Select an Account" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         for(ACAccount *account in accounts){
-            UIAlertAction *option = [UIAlertAction actionWithTitle:account.username style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [picker addAction:[UIAlertAction actionWithTitle:[prefix stringByAppendingString:account.username] style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                NSLog(@"%@", account);
                 self.preferredAccount = account;
-            }];
-            [picker addAction:option];
+                handler(account);
+            }]];
         }
+        [picker addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
         [self presentViewController:picker animated:YES completion:nil];
-        self.accountPickerShowing = YES;
-        while(self.accountPickerIsShowing){
-            //We just have to chooose the most fuckING DANGEROUS, PRIMITIVE WAY TO WAIT FOR IT TO CLOSE
-            continue;
-        }
-        handler(self.preferredAccount);
-        self.preferredAccount = nil;
-        self.accountPickerShowing = NO;
     }
     else{
         UIActionSheet *picker = [[UIActionSheet alloc] initWithTitle:@"Select an Account" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:nil];
         for(ACAccount *account in accounts){
-            //Currently, we're using the account's identifier, and not the username, because it's easier that way
-            [picker addButtonWithTitle:account.identifier];
+            [picker addButtonWithTitle:[prefix stringByAppendingString:account.username]];
         }
         [picker showInView:self.view];
-    }
-    self.accountPickerShowing = YES;
-    while(self.accountPickerIsShowing){
-        //We just have to chooose the most fuckING DANGEROUS, PRIMITIVE WAY TO WAIT FOR IT TO CLOSE
-        continue;
-    }
-    handler(self.preferredAccount);
-    self.preferredAccount = nil;
-    self.accountPickerShowing = NO;
-}
--(IBAction)postToTwitter:(UIButton *)sender{
-    SLComposeViewController *tweet = [self.social tweetWithMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.textView.text, self.authorLabel.text]];
-    if(tweet){
-        [self presentViewController:tweet animated:YES completion:nil];
     }
 }
 #pragma mark - UI Helper Methods
@@ -214,25 +211,57 @@
     topCorrect = (topCorrect < 0.0 ? 0.0 : topCorrect);
     self.textView.contentOffset = (CGPoint){.x = 0, .y = -topCorrect};
 }
+-(void)presentBannerWithStyle:(MHAlertBannerViewStyle)style failure:(BOOL)status{
+    MHAlertBannerView *banner = [MHAlertBannerView bannerWithBannerStyle:style];
+    [self.view addSubview:banner];
+    [banner presentBanner];
+    if(!status){
+        banner.delegate = self;
+        banner.watchedObject = self.social.requests.lastObject;
+        [self.banners addObject:banner];
+    }
+    else{
+        NSString *message;
+        if(style == MHAlertBannerViewStyleFacebookPost){
+            message = MHFacebookPostFailureMessage;
+        }
+        //If support for more networks is added in the future, this will need to be updated
+        else if(style == MHAlertBannerViewStyleTwitterPost){
+            message = MHTweetFailureMessage;
+        }
+        [banner operationFailedWithMessage:message];
+    }
+}
 #pragma mark - MHAlertBannerViewDelegate Methods
 -(void)alertDidCancel:(MHAlertBannerView *)alert{
+    [alert operationFailedWithMessage:@"Canceled!"];
     [self.social cancelPost:alert.watchedObject];
 }
 #pragma mark - MHSocialDelegate Methods
 -(void)post:(NSURLConnection *)post didFailWithError:(NSError *)error{
-    NSLog(@"Post Failed");
     for(MHAlertBannerView *banner in self.banners){
         if(banner.watchedObject == post){
-            [banner operationFailed];
+            if([post.originalRequest.URL.absoluteString containsString:@"graph.facebook.com"]){
+                [banner operationFailedWithMessage:MHFacebookPostFailureMessage];
+            }
+            //If more networks than just Facebook & Twitter are going to be supported in the future, this will need to be edited
+            else{
+                [banner operationFailedWithMessage:MHTweetFailureMessage];
+            }
             [self.banners removeObject:banner];
         }
     }
 }
 -(void)postSucceeded:(NSURLConnection *)post{
-    NSLog(@"Post Succeeded");
     for(MHAlertBannerView *banner in self.banners){
         if(banner.watchedObject == post){
-            [banner operationSucceeded];
+            if([post.originalRequest.URL.absoluteString containsString:@"graph.facebook.com"]){
+                [banner operationSucceededWithMessage:MHFacebookPostSuccessMessage];
+            }
+            //If more networks than just Facebook & Twitter are going to be supported in the future, this will need to be edited
+            else if([post.originalRequest.URL.absoluteString containsString:@"api.twitter.com"]){
+                [banner operationSucceededWithMessage:MHTweetSuccessMessage];
+            }
             [self.banners removeObject:banner];
         }
     }
@@ -242,7 +271,18 @@
 }
 #pragma mark - UIActionSheetDelegate Methods
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    //TODO: Wait for button to be selected, assign self.preferred account to selected button title
-    self.preferredAccount = [self.social.deviceAccounts accountWithIdentifier:[actionSheet buttonTitleAtIndex:buttonIndex]];
+    if(buttonIndex != actionSheet.cancelButtonIndex){
+        NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
+        if([title hasPrefix:@"@"]){
+            [title substringFromIndex:1];
+        }
+        for(ACAccount *account in self.social.deviceAccounts.accounts){
+            if([account.username isEqualToString:title]){
+                self.preferredAccount = [self.social.deviceAccounts accountWithIdentifier:[actionSheet buttonTitleAtIndex:buttonIndex]];
+                self.accountSelectionCompletion(self.preferredAccount);
+                break;
+            }
+        }
+    }
 }
 @end
