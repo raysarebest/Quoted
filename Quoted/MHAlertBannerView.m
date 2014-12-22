@@ -45,7 +45,8 @@
     }
     else if(style == MHAlertBannerViewStyleTwitterPost){
         banner.backgroundColor = [UIColor colorWithRed:85.0/255.0f green:172.0/255.0f blue:238/255.0f alpha:1];
-        //FIXME: Need to add images
+        banner.successImage = [UIImage imageNamed:@"favorite"];
+        banner.failImage = [UIImage imageNamed:@"failWhale"];
         banner.actionLabel.text = @"Tweeting...";
     }
     return banner;

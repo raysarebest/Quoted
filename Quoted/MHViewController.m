@@ -151,11 +151,9 @@ NSString *const MHTweetFailureMessage = @"Tweet Failed!";
     else{
         if([self.social postToNetwork:network withMessage:[NSString stringWithFormat:@"\"%@\"\n\n%@", self.textView.text, self.authorLabel.text]]){
             [self presentBannerWithStyle:style failure:NO];
-            NSLog(@"Free to post");
         }
         else{
             [self presentBannerWithStyle:style failure:YES];
-            NSLog(@"Can't post");
         }
     }
 }
@@ -189,7 +187,6 @@ NSString *const MHTweetFailureMessage = @"Tweet Failed!";
         UIAlertController *picker = [UIAlertController alertControllerWithTitle:@"Select an Account" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         for(ACAccount *account in accounts){
             [picker addAction:[UIAlertAction actionWithTitle:[prefix stringByAppendingString:account.username] style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                NSLog(@"%@", account);
                 self.preferredAccount = account;
                 handler(account);
             }]];
@@ -217,7 +214,7 @@ NSString *const MHTweetFailureMessage = @"Tweet Failed!";
     [banner presentBanner];
     if(!status){
         banner.delegate = self;
-        banner.watchedObject = self.social.requests.lastObject;
+        banner.watchedObject = [self.social.requests objectAtIndex:self.social.requests.count - 2];
         [self.banners addObject:banner];
     }
     else{
@@ -241,14 +238,20 @@ NSString *const MHTweetFailureMessage = @"Tweet Failed!";
 -(void)post:(NSURLConnection *)post didFailWithError:(NSError *)error{
     for(MHAlertBannerView *banner in self.banners){
         if(banner.watchedObject == post){
-            if([post.originalRequest.URL.absoluteString containsString:@"graph.facebook.com"]){
-                [banner operationFailedWithMessage:MHFacebookPostFailureMessage];
+            if([error.domain isEqualToString:@"MHSocialError"] && error.code == 100){
+                //Here, we reassign the post's watchedObject to the new connection that should retry the post
+                banner.watchedObject = [self.social.requests objectAtIndex:self.social.requests.count - 2];
             }
-            //If more networks than just Facebook & Twitter are going to be supported in the future, this will need to be edited
             else{
-                [banner operationFailedWithMessage:MHTweetFailureMessage];
+                if([post.originalRequest.URL.absoluteString containsString:@"graph.facebook.com"]){
+                    [banner operationFailedWithMessage:MHFacebookPostFailureMessage];
+                }
+                //If more networks than just Facebook & Twitter are going to be supported in the future, this will need to be edited
+                else{
+                    [banner operationFailedWithMessage:MHTweetFailureMessage];
+                }
+                [self.banners removeObject:banner];
             }
-            [self.banners removeObject:banner];
         }
     }
 }
