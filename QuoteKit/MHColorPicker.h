@@ -7,7 +7,7 @@
 //
 
 @import Foundation;
-@import UIKit;
+
 @interface MHColorPicker : NSObject
 -(UIColor *)randomColorWithMinColorDifference:(float)difference randomnessSpecificity:(u_int32_t)specificity alpha:(CGFloat)alpha;
 -(UIColor *)textColorFromBackgroundColor:(UIColor *)background;

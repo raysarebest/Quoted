@@ -7,9 +7,7 @@
 //
 
 #import "MHViewController.h"
-#import "MHQuoter.h"
-#import "MHColorPicker.h"
-#import "MHSocialSharer.h"
+@import QuoteKit;
 @import AudioToolbox;
 @import Social;
 @interface MHViewController ()
@@ -113,7 +111,7 @@ NSString *const MHTweetFailureMessage = @"Tweet Failed!";
     self.textView.text = [quote objectForKey:author];
     self.authorLabel.text = [NSString stringWithFormat:@"- %@", author];
     self.authorLabel.accessibilityLabel = self.authorLabel.text;
-    UIColor *background = [self.colorPicker randomColorWithMinColorDifference:.4 randomnessSpecificity:UINT32_MAX andAlpha:1];
+    UIColor *background = [self.colorPicker randomColorWithMinColorDifference:.4 randomnessSpecificity:UINT32_MAX alpha:1];
     if(self.canDisplayBannerAds){
         self.originalContentView.backgroundColor = background;
     }

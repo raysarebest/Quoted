@@ -6,12 +6,13 @@
 //  Copyright (c) 2014 Michael Hulet. All rights reserved.
 //
 
-#import "MHAlertBannerView.h"
 #import "MHSocialSharer.h"
+#import "MHAlertBannerView.h"
 @import UIKit;
 @import iAd;
 @class MHQuoter;
 @class MHColorPicker;
+@class MHSocialSharer;
 @interface MHViewController : UIViewController <ADBannerViewDelegate, MHAlertBannerViewDelegate, MHSocialDelegate, UIActionSheetDelegate>
 @property (strong, nonatomic) MHQuoter *quoter;
 @property (strong, nonatomic) MHColorPicker *colorPicker;

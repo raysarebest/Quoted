@@ -26,6 +26,20 @@
 		4C7830BE19F2F913000F5798 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7830BD19F2F913000F5798 /* iAd.framework */; };
 		4C96776219EE02E50057A52E /* MHSocialSharer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96776119EE02E50057A52E /* MHSocialSharer.m */; };
 		4C96776419EE04D50057A52E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C96776319EE04D50057A52E /* Social.framework */; };
+		4CD0E0C71A4F941A00B65C0A /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CD0E0C61A4F941A00B65C0A /* NotificationCenter.framework */; };
+		4CD0E0CD1A4F941A00B65C0A /* MHTodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E0CC1A4F941A00B65C0A /* MHTodayViewController.m */; };
+		4CD0E0CF1A4F941A00B65C0A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CD0E0CE1A4F941A00B65C0A /* MainInterface.storyboard */; };
+		4CD0E0D21A4F941A00B65C0A /* widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4CD0E0C51A4F941A00B65C0A /* widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4CD0E1061A4FC81700B65C0A /* QuoteKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CD0E1051A4FC81700B65C0A /* QuoteKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4CD0E10C1A4FC81700B65C0A /* QuoteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CD0E1011A4FC81700B65C0A /* QuoteKit.framework */; };
+		4CD0E1151A4FC81700B65C0A /* QuoteKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E1141A4FC81700B65C0A /* QuoteKitTests.m */; };
+		4CD0E1181A4FC81700B65C0A /* QuoteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CD0E1011A4FC81700B65C0A /* QuoteKit.framework */; };
+		4CD0E1191A4FC81700B65C0A /* QuoteKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4CD0E1011A4FC81700B65C0A /* QuoteKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4CD0E1211A4FCB3600B65C0A /* MHQuoter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C40132319A3B25300C3C262 /* MHQuoter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4CD0E1231A4FCB3600B65C0A /* MHColorPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CFC0A9C19D79BE500765F39 /* MHColorPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4CD0E1251A4FCC7B00B65C0A /* MHColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC0A9D19D79BE500765F39 /* MHColorPicker.m */; };
+		4CD0E1261A4FCC8200B65C0A /* MHQuoter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C40132419A3B25300C3C262 /* MHQuoter.m */; };
+		4CD0E1271A4FCDCB00B65C0A /* QuoteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CD0E1011A4FC81700B65C0A /* QuoteKit.framework */; };
 		4CD560B11A0CA05B002A0CE8 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CD560B01A0CA05A002A0CE8 /* Accounts.framework */; };
 		4CFC0A9E19D79BE500765F39 /* MHColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC0A9D19D79BE500765F39 /* MHColorPicker.m */; };
 /* End PBXBuildFile section */
@@ -38,7 +52,60 @@
 			remoteGlobalIDString = 4C4012EA19A3B19600C3C262;
 			remoteInfo = Quoted;
 		};
+		4CD0E0D01A4F941A00B65C0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C4012E319A3B19600C3C262 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4CD0E0C41A4F941A00B65C0A;
+			remoteInfo = widget;
+		};
+		4CD0E10D1A4FC81700B65C0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C4012E319A3B19600C3C262 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4CD0E1001A4FC81700B65C0A;
+			remoteInfo = QuoteKit;
+		};
+		4CD0E10F1A4FC81700B65C0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C4012E319A3B19600C3C262 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C4012EA19A3B19600C3C262;
+			remoteInfo = Quoted;
+		};
+		4CD0E1161A4FC81700B65C0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C4012E319A3B19600C3C262 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4CD0E1001A4FC81700B65C0A;
+			remoteInfo = QuoteKit;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4CD0E0D61A4F941B00B65C0A /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4CD0E0D21A4F941A00B65C0A /* widget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4CD0E11D1A4FC81800B65C0A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4CD0E1191A4FC81700B65C0A /* QuoteKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4C4012EB19A3B19600C3C262 /* Quoted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quoted.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +136,18 @@
 		4C96776019EE02E50057A52E /* MHSocialSharer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHSocialSharer.h; sourceTree = "<group>"; };
 		4C96776119EE02E50057A52E /* MHSocialSharer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHSocialSharer.m; sourceTree = "<group>"; };
 		4C96776319EE04D50057A52E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		4CD0E0C51A4F941A00B65C0A /* widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CD0E0C61A4F941A00B65C0A /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		4CD0E0CA1A4F941A00B65C0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CD0E0CB1A4F941A00B65C0A /* MHTodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MHTodayViewController.h; sourceTree = "<group>"; };
+		4CD0E0CC1A4F941A00B65C0A /* MHTodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MHTodayViewController.m; sourceTree = "<group>"; };
+		4CD0E0CE1A4F941A00B65C0A /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		4CD0E1011A4FC81700B65C0A /* QuoteKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuoteKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CD0E1041A4FC81700B65C0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CD0E1051A4FC81700B65C0A /* QuoteKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuoteKit.h; sourceTree = "<group>"; };
+		4CD0E10B1A4FC81700B65C0A /* QuoteKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuoteKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CD0E1131A4FC81700B65C0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CD0E1141A4FC81700B65C0A /* QuoteKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuoteKitTests.m; sourceTree = "<group>"; };
 		4CD560B01A0CA05A002A0CE8 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		4CFC0A9C19D79BE500765F39 /* MHColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHColorPicker.h; path = ../MHColorPicker.h; sourceTree = "<group>"; };
 		4CFC0A9D19D79BE500765F39 /* MHColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHColorPicker.m; path = ../MHColorPicker.m; sourceTree = "<group>"; };
@@ -82,6 +161,7 @@
 				4CD560B11A0CA05B002A0CE8 /* Accounts.framework in Frameworks */,
 				4C7830BE19F2F913000F5798 /* iAd.framework in Frameworks */,
 				4C96776419EE04D50057A52E /* Social.framework in Frameworks */,
+				4CD0E1181A4FC81700B65C0A /* QuoteKit.framework in Frameworks */,
 				4C468A4719A6F36E002F87BB /* AudioToolbox.framework in Frameworks */,
 				4C4012F319A3B19600C3C262 /* UIKit.framework in Frameworks */,
 				4C4012EF19A3B19600C3C262 /* Foundation.framework in Frameworks */,
@@ -98,21 +178,41 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4CD0E0C21A4F941A00B65C0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CD0E1271A4FCDCB00B65C0A /* QuoteKit.framework in Frameworks */,
+				4CD0E0C71A4F941A00B65C0A /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4CD0E0FD1A4FC81700B65C0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4CD0E1081A4FC81700B65C0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CD0E10C1A4FC81700B65C0A /* QuoteKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4C0B580219A51E9800EC1DFF /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = iPad;
-			sourceTree = "<group>";
-		};
 		4C4012E219A3B19600C3C262 = {
 			isa = PBXGroup;
 			children = (
 				4C4012F419A3B19600C3C262 /* Quoted */,
 				4C40131319A3B19600C3C262 /* QuotedTests */,
+				4CD0E0C81A4F941A00B65C0A /* widget */,
+				4CD0E1021A4FC81700B65C0A /* QuoteKit */,
+				4CD0E1111A4FC81700B65C0A /* QuoteKitTests */,
 				4C4012ED19A3B19600C3C262 /* Frameworks */,
 				4C4012EC19A3B19600C3C262 /* Products */,
 			);
@@ -123,6 +223,9 @@
 			children = (
 				4C4012EB19A3B19600C3C262 /* Quoted.app */,
 				4C40130C19A3B19600C3C262 /* QuotedTests.xctest */,
+				4CD0E0C51A4F941A00B65C0A /* widget.appex */,
+				4CD0E1011A4FC81700B65C0A /* QuoteKit.framework */,
+				4CD0E10B1A4FC81700B65C0A /* QuoteKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -138,6 +241,7 @@
 				4C4012F019A3B19600C3C262 /* CoreGraphics.framework */,
 				4C4012F219A3B19600C3C262 /* UIKit.framework */,
 				4C40130D19A3B19600C3C262 /* XCTest.framework */,
+				4CD0E0C61A4F941A00B65C0A /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -145,7 +249,6 @@
 		4C4012F419A3B19600C3C262 /* Quoted */ = {
 			isa = PBXGroup;
 			children = (
-				4C0B580219A51E9800EC1DFF /* iPad */,
 				4C4012FD19A3B19600C3C262 /* MHAppDelegate.h */,
 				4C4012FE19A3B19600C3C262 /* MHAppDelegate.m */,
 				4C40130019A3B19600C3C262 /* Main.storyboard */,
@@ -156,10 +259,6 @@
 				4C96776019EE02E50057A52E /* MHSocialSharer.h */,
 				4C96776119EE02E50057A52E /* MHSocialSharer.m */,
 				4C40130619A3B19600C3C262 /* Images.xcassets */,
-				4C40132319A3B25300C3C262 /* MHQuoter.h */,
-				4C40132419A3B25300C3C262 /* MHQuoter.m */,
-				4CFC0A9C19D79BE500765F39 /* MHColorPicker.h */,
-				4CFC0A9D19D79BE500765F39 /* MHColorPicker.m */,
 				4C4012F519A3B19600C3C262 /* Supporting Files */,
 			);
 			path = Quoted;
@@ -194,7 +293,77 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		4CD0E0C81A4F941A00B65C0A /* widget */ = {
+			isa = PBXGroup;
+			children = (
+				4CD0E0CB1A4F941A00B65C0A /* MHTodayViewController.h */,
+				4CD0E0CC1A4F941A00B65C0A /* MHTodayViewController.m */,
+				4CD0E0CE1A4F941A00B65C0A /* MainInterface.storyboard */,
+				4CD0E0C91A4F941A00B65C0A /* Supporting Files */,
+			);
+			path = widget;
+			sourceTree = "<group>";
+		};
+		4CD0E0C91A4F941A00B65C0A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4CD0E0CA1A4F941A00B65C0A /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4CD0E1021A4FC81700B65C0A /* QuoteKit */ = {
+			isa = PBXGroup;
+			children = (
+				4C40132319A3B25300C3C262 /* MHQuoter.h */,
+				4C40132419A3B25300C3C262 /* MHQuoter.m */,
+				4CFC0A9C19D79BE500765F39 /* MHColorPicker.h */,
+				4CFC0A9D19D79BE500765F39 /* MHColorPicker.m */,
+				4CD0E1051A4FC81700B65C0A /* QuoteKit.h */,
+				4CD0E1031A4FC81700B65C0A /* Supporting Files */,
+			);
+			path = QuoteKit;
+			sourceTree = "<group>";
+		};
+		4CD0E1031A4FC81700B65C0A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4CD0E1041A4FC81700B65C0A /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4CD0E1111A4FC81700B65C0A /* QuoteKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				4CD0E1141A4FC81700B65C0A /* QuoteKitTests.m */,
+				4CD0E1121A4FC81700B65C0A /* Supporting Files */,
+			);
+			path = QuoteKitTests;
+			sourceTree = "<group>";
+		};
+		4CD0E1121A4FC81700B65C0A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4CD0E1131A4FC81700B65C0A /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		4CD0E0FE1A4FC81700B65C0A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CD0E1061A4FC81700B65C0A /* QuoteKit.h in Headers */,
+				4CD0E1231A4FCB3600B65C0A /* MHColorPicker.h in Headers */,
+				4CD0E1211A4FCB3600B65C0A /* MHQuoter.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		4C4012EA19A3B19600C3C262 /* Quoted */ = {
@@ -204,10 +373,14 @@
 				4C4012E719A3B19600C3C262 /* Sources */,
 				4C4012E819A3B19600C3C262 /* Frameworks */,
 				4C4012E919A3B19600C3C262 /* Resources */,
+				4CD0E0D61A4F941B00B65C0A /* Embed App Extensions */,
+				4CD0E11D1A4FC81800B65C0A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4CD0E0D11A4F941A00B65C0A /* PBXTargetDependency */,
+				4CD0E1171A4FC81700B65C0A /* PBXTargetDependency */,
 			);
 			name = Quoted;
 			productName = Quoted;
@@ -232,6 +405,60 @@
 			productReference = 4C40130C19A3B19600C3C262 /* QuotedTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		4CD0E0C41A4F941A00B65C0A /* widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4CD0E0D51A4F941B00B65C0A /* Build configuration list for PBXNativeTarget "widget" */;
+			buildPhases = (
+				4CD0E0C11A4F941A00B65C0A /* Sources */,
+				4CD0E0C21A4F941A00B65C0A /* Frameworks */,
+				4CD0E0C31A4F941A00B65C0A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = widget;
+			productName = widget;
+			productReference = 4CD0E0C51A4F941A00B65C0A /* widget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		4CD0E1001A4FC81700B65C0A /* QuoteKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4CD0E11A1A4FC81800B65C0A /* Build configuration list for PBXNativeTarget "QuoteKit" */;
+			buildPhases = (
+				4CD0E0FC1A4FC81700B65C0A /* Sources */,
+				4CD0E0FD1A4FC81700B65C0A /* Frameworks */,
+				4CD0E0FE1A4FC81700B65C0A /* Headers */,
+				4CD0E0FF1A4FC81700B65C0A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QuoteKit;
+			productName = QuoteKit;
+			productReference = 4CD0E1011A4FC81700B65C0A /* QuoteKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		4CD0E10A1A4FC81700B65C0A /* QuoteKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4CD0E11E1A4FC81800B65C0A /* Build configuration list for PBXNativeTarget "QuoteKitTests" */;
+			buildPhases = (
+				4CD0E1071A4FC81700B65C0A /* Sources */,
+				4CD0E1081A4FC81700B65C0A /* Frameworks */,
+				4CD0E1091A4FC81700B65C0A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4CD0E10E1A4FC81700B65C0A /* PBXTargetDependency */,
+				4CD0E1101A4FC81700B65C0A /* PBXTargetDependency */,
+			);
+			name = QuoteKitTests;
+			productName = QuoteKitTests;
+			productReference = 4CD0E10B1A4FC81700B65C0A /* QuoteKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -246,6 +473,18 @@
 						DevelopmentTeam = K3ZLWH83BT;
 					};
 					4C40130B19A3B19600C3C262 = {
+						TestTargetID = 4C4012EA19A3B19600C3C262;
+					};
+					4CD0E0C41A4F941A00B65C0A = {
+						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = K3ZLWH83BT;
+					};
+					4CD0E1001A4FC81700B65C0A = {
+						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = K3ZLWH83BT;
+					};
+					4CD0E10A1A4FC81700B65C0A = {
+						CreatedOnToolsVersion = 6.1.1;
 						TestTargetID = 4C4012EA19A3B19600C3C262;
 					};
 				};
@@ -265,6 +504,9 @@
 			targets = (
 				4C4012EA19A3B19600C3C262 /* Quoted */,
 				4C40130B19A3B19600C3C262 /* QuotedTests */,
+				4CD0E0C41A4F941A00B65C0A /* widget */,
+				4CD0E1001A4FC81700B65C0A /* QuoteKit */,
+				4CD0E10A1A4FC81700B65C0A /* QuoteKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -285,6 +527,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C40131819A3B19600C3C262 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4CD0E0C31A4F941A00B65C0A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CD0E0CF1A4F941A00B65C0A /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4CD0E0FF1A4FC81700B65C0A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4CD0E1091A4FC81700B65C0A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +577,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4CD0E0C11A4F941A00B65C0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CD0E0CD1A4F941A00B65C0A /* MHTodayViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4CD0E0FC1A4FC81700B65C0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CD0E1261A4FCC8200B65C0A /* MHQuoter.m in Sources */,
+				4CD0E1251A4FCC7B00B65C0A /* MHColorPicker.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4CD0E1071A4FC81700B65C0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CD0E1151A4FC81700B65C0A /* QuoteKitTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -320,6 +609,26 @@
 			isa = PBXTargetDependency;
 			target = 4C4012EA19A3B19600C3C262 /* Quoted */;
 			targetProxy = 4C40131119A3B19600C3C262 /* PBXContainerItemProxy */;
+		};
+		4CD0E0D11A4F941A00B65C0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4CD0E0C41A4F941A00B65C0A /* widget */;
+			targetProxy = 4CD0E0D01A4F941A00B65C0A /* PBXContainerItemProxy */;
+		};
+		4CD0E10E1A4FC81700B65C0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4CD0E1001A4FC81700B65C0A /* QuoteKit */;
+			targetProxy = 4CD0E10D1A4FC81700B65C0A /* PBXContainerItemProxy */;
+		};
+		4CD0E1101A4FC81700B65C0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C4012EA19A3B19600C3C262 /* Quoted */;
+			targetProxy = 4CD0E10F1A4FC81700B65C0A /* PBXContainerItemProxy */;
+		};
+		4CD0E1171A4FC81700B65C0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4CD0E1001A4FC81700B65C0A /* QuoteKit */;
+			targetProxy = 4CD0E1161A4FC81700B65C0A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -441,6 +750,7 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = "Quoted/Quoted-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -461,6 +771,7 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = "Quoted/Quoted-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -508,6 +819,144 @@
 			};
 			name = Release;
 		};
+		4CD0E0D31A4F941B00B65C0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = widget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		4CD0E0D41A4F941B00B65C0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				INFOPLIST_FILE = widget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		4CD0E11B1A4FC81800B65C0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = QuoteKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4CD0E11C1A4FC81800B65C0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				INFOPLIST_FILE = QuoteKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		4CD0E11F1A4FC81800B65C0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = QuoteKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Quoted.app/Quoted";
+			};
+			name = Debug;
+		};
+		4CD0E1201A4FC81800B65C0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				INFOPLIST_FILE = QuoteKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Quoted.app/Quoted";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -537,6 +986,30 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		4CD0E0D51A4F941B00B65C0A /* Build configuration list for PBXNativeTarget "widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CD0E0D31A4F941B00B65C0A /* Debug */,
+				4CD0E0D41A4F941B00B65C0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		4CD0E11A1A4FC81800B65C0A /* Build configuration list for PBXNativeTarget "QuoteKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CD0E11B1A4FC81800B65C0A /* Debug */,
+				4CD0E11C1A4FC81800B65C0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		4CD0E11E1A4FC81800B65C0A /* Build configuration list for PBXNativeTarget "QuoteKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CD0E11F1A4FC81800B65C0A /* Debug */,
+				4CD0E1201A4FC81800B65C0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
