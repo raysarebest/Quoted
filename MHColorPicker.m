@@ -22,9 +22,7 @@ CGFloat colors[3];
     return [UIColor colorWithRed:colors[0] green:colors[1] blue:colors[2] alpha:alpha];
 }
 -(UIColor *)textColorFromBackgroundColor:(UIColor *)background{
-    CGFloat alpha;
-    [background getRed:nil green:nil blue:nil alpha:&alpha];
-    return [UIColor colorWithRed:1-colors[0] green:1-colors[1] blue:1-colors[2] alpha:alpha];
+    return [UIColor colorWithRed:1-colors[0] green:1-colors[1] blue:1-colors[2] alpha:1];
 }
 CGFloat randomColorValue(u_int32_t specificity){
     return (CGFloat)arc4random_uniform(specificity)/specificity;

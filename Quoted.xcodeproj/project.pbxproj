@@ -26,6 +26,7 @@
 		4C7830BE19F2F913000F5798 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7830BD19F2F913000F5798 /* iAd.framework */; };
 		4C96776219EE02E50057A52E /* MHSocialSharer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96776119EE02E50057A52E /* MHSocialSharer.m */; };
 		4C96776419EE04D50057A52E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C96776319EE04D50057A52E /* Social.framework */; };
+		4CB15EA91A509D2F006F5F7F /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CB15EA81A509D2F006F5F7F /* Main-iPad.storyboard */; };
 		4CD0E0C71A4F941A00B65C0A /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CD0E0C61A4F941A00B65C0A /* NotificationCenter.framework */; };
 		4CD0E0CD1A4F941A00B65C0A /* MHTodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E0CC1A4F941A00B65C0A /* MHTodayViewController.m */; };
 		4CD0E0CF1A4F941A00B65C0A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CD0E0CE1A4F941A00B65C0A /* MainInterface.storyboard */; };
@@ -136,6 +137,7 @@
 		4C96776019EE02E50057A52E /* MHSocialSharer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHSocialSharer.h; sourceTree = "<group>"; };
 		4C96776119EE02E50057A52E /* MHSocialSharer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHSocialSharer.m; sourceTree = "<group>"; };
 		4C96776319EE04D50057A52E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		4CB15EA81A509D2F006F5F7F /* Main-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Main-iPad.storyboard"; path = "../Main-iPad.storyboard"; sourceTree = "<group>"; };
 		4CD0E0C51A4F941A00B65C0A /* widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CD0E0C61A4F941A00B65C0A /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		4CD0E0CA1A4F941A00B65C0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 		4C4012F419A3B19600C3C262 /* Quoted */ = {
 			isa = PBXGroup;
 			children = (
+				4CB15EA81A509D2F006F5F7F /* Main-iPad.storyboard */,
 				4C4012FD19A3B19600C3C262 /* MHAppDelegate.h */,
 				4C4012FE19A3B19600C3C262 /* MHAppDelegate.m */,
 				4C40130019A3B19600C3C262 /* Main.storyboard */,
@@ -519,6 +522,7 @@
 				4C40130719A3B19600C3C262 /* Images.xcassets in Resources */,
 				4C4012F919A3B19600C3C262 /* InfoPlist.strings in Resources */,
 				4C40130219A3B19600C3C262 /* Main.storyboard in Resources */,
+				4CB15EA91A509D2F006F5F7F /* Main-iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,7 +757,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -774,7 +778,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -836,7 +840,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -853,7 +859,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -994,6 +1002,7 @@
 				4CD0E0D41A4F941B00B65C0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4CD0E11A1A4FC81800B65C0A /* Build configuration list for PBXNativeTarget "QuoteKit" */ = {
 			isa = XCConfigurationList;
@@ -1002,6 +1011,7 @@
 				4CD0E11C1A4FC81800B65C0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4CD0E11E1A4FC81800B65C0A /* Build configuration list for PBXNativeTarget "QuoteKitTests" */ = {
 			isa = XCConfigurationList;
@@ -1010,6 +1020,7 @@
 				4CD0E1201A4FC81800B65C0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

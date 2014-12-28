@@ -18,6 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad){
+        self.quoteLabel.textAlignment = NSTextAlignmentCenter;
+        self.authorLabel.textAlignment = NSTextAlignmentCenter;
+    }
     [self updateQuote];
 }
 
