@@ -52,8 +52,6 @@
 }
 #pragma mark - Private Helper Methods
 -(void)updateQuote{
-    static NSUInteger calls = 0;
-    NSLog(@"Called %lu times", (unsigned long)calls);
     UIColor *background = [self.colorPicker randomColorWithMinColorDifference:.4 randomnessSpecificity:UINT32_MAX alpha:.3];
     UIColor *text = [self.colorPicker textColorFromBackgroundColor:background];
     self.view.backgroundColor = background;
