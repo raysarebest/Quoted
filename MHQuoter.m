@@ -21,8 +21,6 @@
         self.lastQuoteIndex = index;
         return quote;
     }
-    //This will never run
-    return nil;
 }
 -(NSArray *)quotes{
     if(!_quotes){
