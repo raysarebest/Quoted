@@ -10,11 +10,9 @@
 #import "MHAlertBannerView.h"
 @import UIKit;
 @import iAd;
-@class MHQuoter;
 @class MHColorPicker;
 @class MHSocialSharer;
 @interface MHViewController : UIViewController <ADBannerViewDelegate, MHAlertBannerViewDelegate, MHSocialDelegate, UIActionSheetDelegate>
-@property (strong, nonatomic) MHQuoter *quoter;
 @property (strong, nonatomic) MHColorPicker *colorPicker;
 @property (strong, nonatomic) MHSocialSharer *social;
 @property (strong, nonatomic) IBOutlet UIButton *facebookButton;

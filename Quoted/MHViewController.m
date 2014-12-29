@@ -28,12 +28,6 @@ NSString *const MHTweetSuccessMessage = @"Tweeted!";
 NSString *const MHTweetFailureMessage = @"Tweet Failed!";
 //I'm supposed to add random animations into this app at some point, but I really don't feel like it. Maybe I'll do it later
 #pragma mark - Object Initializers
--(MHQuoter *)quoter{
-    if(!_quoter){
-        _quoter = [[MHQuoter alloc] init];
-    }
-    return _quoter;
-}
 -(MHColorPicker *)colorPicker{
     if(!_colorPicker){
         _colorPicker = [[MHColorPicker alloc] init];
@@ -106,11 +100,10 @@ NSString *const MHTweetFailureMessage = @"Tweet Failed!";
 }
 #pragma mark - Logic Essentials
 -(void)randomQuoteWithVibration:(BOOL)vibration{
-    NSDictionary *quote = [self.quoter randomQuote];
-    NSString *author = [quote.allKeys objectAtIndex:0];
-    self.textView.text = [quote objectForKey:author];
-    self.authorLabel.text = [NSString stringWithFormat:@"- %@", author];
-    self.authorLabel.accessibilityLabel = self.authorLabel.text;
+    MHQuote *quote = [MHQuote randomQuote];
+    self.textView.text = quote.quote;
+    self.authorLabel.text = [NSString stringWithFormat:@"- %@", quote.author];
+    self.authorLabel.accessibilityLabel = quote.author;
     UIColor *background = [self.colorPicker randomColorWithMinColorDifference:.4 randomnessSpecificity:UINT32_MAX alpha:1];
     if(self.canDisplayBannerAds){
         self.originalContentView.backgroundColor = background;

@@ -37,7 +37,6 @@
     // If there's no update required, use NCUpdateResultNoData
     // If there's an update, use NCUpdateResultNewData
     [self updateQuote];
-    self.preferredContentSize = CGSizeMake(320, 320);
     [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(updateQuote) userInfo:nil repeats:YES];
     completionHandler(NCUpdateResultNewData);
 }
@@ -51,12 +50,6 @@
     }
     return _colorPicker;
 }
--(MHQuoter *)quoter{
-    if(!_quoter){
-        _quoter = [[MHQuoter alloc] init];
-    }
-    return _quoter;
-}
 #pragma mark - Private Helper Methods
 -(void)updateQuote{
     static NSUInteger calls = 0;
@@ -66,12 +59,10 @@
     self.view.backgroundColor = background;
     self.quoteLabel.textColor = text;
     self.authorLabel.textColor = text;
-    NSDictionary *quote = [self.quoter randomQuote];
-    NSString *author = (NSString *)[quote.allKeys firstObject];
-    self.authorLabel.text = [@"- " stringByAppendingString:author];
-    self.quoteLabel.text = [quote objectForKey:author];
-    [self.quoteLabel sizeToFit];
-    [self.view sizeToFit];
-    //TODO: Fix dynamic view sizing
+    MHQuote *quote = [MHQuote randomQuote];
+    self.authorLabel.text = [@"- " stringByAppendingString:quote.author];
+    self.quoteLabel.text = quote.quote;
+    self.authorLabel.accessibilityLabel = quote.author;
+    self.quoteLabel.accessibilityLabel = quote.quote;
 }
 @end

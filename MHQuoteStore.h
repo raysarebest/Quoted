@@ -7,8 +7,8 @@
 //
 
 @import Foundation;
-
-@interface MHQuoter : NSObject
--(NSDictionary *)randomQuote;
+@interface MHQuoteStore : NSObject
 @property (nonatomic) NSUInteger lastQuoteIndex;
++(instancetype)sharedStore;
+-(NSDictionary *)randomQuote;
 @end

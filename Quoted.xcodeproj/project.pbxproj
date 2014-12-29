@@ -39,8 +39,10 @@
 		4CD0E1251A4FCC7B00B65C0A /* MHColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC0A9D19D79BE500765F39 /* MHColorPicker.m */; };
 		4CD0E1271A4FCDCB00B65C0A /* QuoteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CD0E1011A4FC81700B65C0A /* QuoteKit.framework */; };
 		4CD560B11A0CA05B002A0CE8 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CD560B01A0CA05A002A0CE8 /* Accounts.framework */; };
-		4CF199631A5107CB00FFB068 /* MHQuoter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C40132319A3B25300C3C262 /* MHQuoter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4CF199641A5107CB00FFB068 /* MHQuoter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C40132419A3B25300C3C262 /* MHQuoter.m */; };
+		4CF199631A5107CB00FFB068 /* MHQuoteStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C40132319A3B25300C3C262 /* MHQuoteStore.h */; };
+		4CF199641A5107CB00FFB068 /* MHQuoteStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C40132419A3B25300C3C262 /* MHQuoteStore.m */; };
+		4CF199671A510B8300FFB068 /* MHQuote.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CF199651A510B8300FFB068 /* MHQuote.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4CF199681A510B8300FFB068 /* MHQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF199661A510B8300FFB068 /* MHQuote.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,8 +128,8 @@
 		4C40131519A3B19600C3C262 /* QuotedTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "QuotedTests-Info.plist"; sourceTree = "<group>"; };
 		4C40131719A3B19600C3C262 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4C40131919A3B19600C3C262 /* QuotedTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuotedTests.m; sourceTree = "<group>"; };
-		4C40132319A3B25300C3C262 /* MHQuoter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHQuoter.h; path = ../MHQuoter.h; sourceTree = "<group>"; };
-		4C40132419A3B25300C3C262 /* MHQuoter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHQuoter.m; path = ../MHQuoter.m; sourceTree = "<group>"; };
+		4C40132319A3B25300C3C262 /* MHQuoteStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHQuoteStore.h; path = ../MHQuoteStore.h; sourceTree = "<group>"; };
+		4C40132419A3B25300C3C262 /* MHQuoteStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHQuoteStore.m; path = ../MHQuoteStore.m; sourceTree = "<group>"; };
 		4C468A4619A6F36E002F87BB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		4C60C3761A17A5F400960F7F /* MHAlertBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHAlertBannerView.h; sourceTree = "<group>"; };
 		4C60C3771A17A5F400960F7F /* MHAlertBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHAlertBannerView.m; sourceTree = "<group>"; };
@@ -149,6 +151,8 @@
 		4CD0E1131A4FC81700B65C0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CD0E1141A4FC81700B65C0A /* QuoteKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuoteKitTests.m; sourceTree = "<group>"; };
 		4CD560B01A0CA05A002A0CE8 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		4CF199651A510B8300FFB068 /* MHQuote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHQuote.h; sourceTree = "<group>"; };
+		4CF199661A510B8300FFB068 /* MHQuote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHQuote.m; sourceTree = "<group>"; };
 		4CFC0A9C19D79BE500765F39 /* MHColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHColorPicker.h; path = ../MHColorPicker.h; sourceTree = "<group>"; };
 		4CFC0A9D19D79BE500765F39 /* MHColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHColorPicker.m; path = ../MHColorPicker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -316,8 +320,10 @@
 		4CD0E1021A4FC81700B65C0A /* QuoteKit */ = {
 			isa = PBXGroup;
 			children = (
-				4C40132319A3B25300C3C262 /* MHQuoter.h */,
-				4C40132419A3B25300C3C262 /* MHQuoter.m */,
+				4CF199651A510B8300FFB068 /* MHQuote.h */,
+				4CF199661A510B8300FFB068 /* MHQuote.m */,
+				4C40132319A3B25300C3C262 /* MHQuoteStore.h */,
+				4C40132419A3B25300C3C262 /* MHQuoteStore.m */,
 				4CFC0A9C19D79BE500765F39 /* MHColorPicker.h */,
 				4CFC0A9D19D79BE500765F39 /* MHColorPicker.m */,
 				4CD0E1051A4FC81700B65C0A /* QuoteKit.h */,
@@ -359,7 +365,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CD0E1061A4FC81700B65C0A /* QuoteKit.h in Headers */,
-				4CF199631A5107CB00FFB068 /* MHQuoter.h in Headers */,
+				4CF199631A5107CB00FFB068 /* MHQuoteStore.h in Headers */,
+				4CF199671A510B8300FFB068 /* MHQuote.h in Headers */,
 				4CD0E1231A4FCB3600B65C0A /* MHColorPicker.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -589,8 +596,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CF199641A5107CB00FFB068 /* MHQuoter.m in Sources */,
+				4CF199641A5107CB00FFB068 /* MHQuoteStore.m in Sources */,
 				4CD0E1251A4FCC7B00B65C0A /* MHColorPicker.m in Sources */,
+				4CF199681A510B8300FFB068 /* MHQuote.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

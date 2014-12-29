@@ -10,7 +10,6 @@
 @class MHQuoter;
 @class MHColorPicker;
 @interface MHTodayViewController : UIViewController
-@property (strong, nonatomic) MHQuoter *quoter;
 @property (strong, nonatomic) MHColorPicker *colorPicker;
 @property (weak, nonatomic) IBOutlet UILabel *quoteLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
