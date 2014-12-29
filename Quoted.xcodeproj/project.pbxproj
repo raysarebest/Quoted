@@ -20,7 +20,6 @@
 		4C40131019A3B19600C3C262 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4012F219A3B19600C3C262 /* UIKit.framework */; };
 		4C40131819A3B19600C3C262 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C40131619A3B19600C3C262 /* InfoPlist.strings */; };
 		4C40131A19A3B19600C3C262 /* QuotedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C40131919A3B19600C3C262 /* QuotedTests.m */; };
-		4C40132519A3B25300C3C262 /* MHQuoter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C40132419A3B25300C3C262 /* MHQuoter.m */; };
 		4C468A4719A6F36E002F87BB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C468A4619A6F36E002F87BB /* AudioToolbox.framework */; };
 		4C60C3781A17A5F400960F7F /* MHAlertBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C60C3771A17A5F400960F7F /* MHAlertBannerView.m */; };
 		4C7830BE19F2F913000F5798 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7830BD19F2F913000F5798 /* iAd.framework */; };
@@ -36,13 +35,12 @@
 		4CD0E1151A4FC81700B65C0A /* QuoteKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0E1141A4FC81700B65C0A /* QuoteKitTests.m */; };
 		4CD0E1181A4FC81700B65C0A /* QuoteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CD0E1011A4FC81700B65C0A /* QuoteKit.framework */; };
 		4CD0E1191A4FC81700B65C0A /* QuoteKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4CD0E1011A4FC81700B65C0A /* QuoteKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4CD0E1211A4FCB3600B65C0A /* MHQuoter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C40132319A3B25300C3C262 /* MHQuoter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CD0E1231A4FCB3600B65C0A /* MHColorPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CFC0A9C19D79BE500765F39 /* MHColorPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CD0E1251A4FCC7B00B65C0A /* MHColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC0A9D19D79BE500765F39 /* MHColorPicker.m */; };
-		4CD0E1261A4FCC8200B65C0A /* MHQuoter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C40132419A3B25300C3C262 /* MHQuoter.m */; };
 		4CD0E1271A4FCDCB00B65C0A /* QuoteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CD0E1011A4FC81700B65C0A /* QuoteKit.framework */; };
 		4CD560B11A0CA05B002A0CE8 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CD560B01A0CA05A002A0CE8 /* Accounts.framework */; };
-		4CFC0A9E19D79BE500765F39 /* MHColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC0A9D19D79BE500765F39 /* MHColorPicker.m */; };
+		4CF199631A5107CB00FFB068 /* MHQuoter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C40132319A3B25300C3C262 /* MHQuoter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4CF199641A5107CB00FFB068 /* MHQuoter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C40132419A3B25300C3C262 /* MHQuoter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -361,8 +359,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CD0E1061A4FC81700B65C0A /* QuoteKit.h in Headers */,
+				4CF199631A5107CB00FFB068 /* MHQuoter.h in Headers */,
 				4CD0E1231A4FCB3600B65C0A /* MHColorPicker.h in Headers */,
-				4CD0E1211A4FCB3600B65C0A /* MHQuoter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,8 +563,6 @@
 			files = (
 				4C4012FB19A3B19600C3C262 /* main.m in Sources */,
 				4C40130519A3B19600C3C262 /* MHViewController.m in Sources */,
-				4CFC0A9E19D79BE500765F39 /* MHColorPicker.m in Sources */,
-				4C40132519A3B25300C3C262 /* MHQuoter.m in Sources */,
 				4C96776219EE02E50057A52E /* MHSocialSharer.m in Sources */,
 				4C60C3781A17A5F400960F7F /* MHAlertBannerView.m in Sources */,
 				4C4012FF19A3B19600C3C262 /* MHAppDelegate.m in Sources */,
@@ -593,7 +589,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CD0E1261A4FCC8200B65C0A /* MHQuoter.m in Sources */,
+				4CF199641A5107CB00FFB068 /* MHQuoter.m in Sources */,
 				4CD0E1251A4FCC7B00B65C0A /* MHColorPicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
