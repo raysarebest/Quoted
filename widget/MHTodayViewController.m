@@ -23,6 +23,7 @@
         self.authorLabel.textAlignment = NSTextAlignmentCenter;
     }
     [self updateQuote];
+    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(updateQuote) userInfo:nil repeats:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,17 +33,16 @@
 
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler {
     // Perform any setup necessary in order to update the view.
-    
+    //[self updateQuote];
     // If an error is encountered, use NCUpdateResultFailed
     // If there's no update required, use NCUpdateResultNoData
     // If there's an update, use NCUpdateResultNewData
-    [self updateQuote];
-    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(updateQuote) userInfo:nil repeats:YES];
-    completionHandler(NCUpdateResultNewData);
+    completionHandler(NCUpdateResultNoData);
 }
 -(UIEdgeInsets)widgetMarginInsetsForProposedMarginInsets:(UIEdgeInsets)defaultMarginInsets{
     return UIEdgeInsetsZero;
 }
+
 #pragma mark - Property Lazy Instantiation
 -(MHColorPicker *)colorPicker{
     if(!_colorPicker){

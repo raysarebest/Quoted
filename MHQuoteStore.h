@@ -8,7 +8,6 @@
 
 @import Foundation;
 @interface MHQuoteStore : NSObject
-@property (nonatomic) NSUInteger lastQuoteIndex;
 +(instancetype)sharedStore;
 -(NSDictionary *)randomQuote;
 @end
