@@ -22,10 +22,10 @@
 @end
 @implementation MHViewController
 //Generic posting message constants
-NSString *const MHFacebookPostSuccessMessage = @"Posted!";
-NSString *const MHFacebookPostFailureMessage = @"Post to Facebook Failed!";
-NSString *const MHTweetSuccessMessage = @"Tweeted!";
-NSString *const MHTweetFailureMessage = @"Tweet Failed!";
+static NSString *const MHFacebookPostSuccessMessage = @"Posted!";
+static NSString *const MHFacebookPostFailureMessage = @"Post to Facebook Failed!";
+static NSString *const MHTweetSuccessMessage = @"Tweeted!";
+static NSString *const MHTweetFailureMessage = @"Tweet Failed!";
 //I'm supposed to add random animations into this app at some point, but I really don't feel like it. Maybe I'll do it later
 #pragma mark - Object Initializers
 -(MHColorPicker *)colorPicker{
