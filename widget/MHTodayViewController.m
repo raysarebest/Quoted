@@ -10,7 +10,10 @@
 @import QuoteKit;
 @import NotificationCenter;
 @interface MHTodayViewController () <NCWidgetProviding>
--(void)updateQuote;
+@property (strong, nonatomic) NSTimer *changeTimer;
+-(void)updateQuoteAfterTap:(BOOL)tapped;
+-(void)resetTimer;
+-(NSTimer *)newTimer;
 @end
 
 @implementation MHTodayViewController
@@ -22,8 +25,11 @@
         self.quoteLabel.textAlignment = NSTextAlignmentCenter;
         self.authorLabel.textAlignment = NSTextAlignmentCenter;
     }
-    [self updateQuote];
-    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(updateQuote) userInfo:nil repeats:YES];
+    [self updateQuoteAfterTap:NO];
+    [self resetTimer];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(updateQuoteAfterTap:)];
+    [self.quoteLabel addGestureRecognizer:tap];
+    [self.authorLabel addGestureRecognizer:tap];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,24 +49,39 @@
     return UIEdgeInsetsZero;
 }
 
-#pragma mark - Property Lazy Instantiation
--(MHColorPicker *)colorPicker{
-    if(!_colorPicker){
-        _colorPicker = [[MHColorPicker alloc] init];
-    }
-    return _colorPicker;
-}
 #pragma mark - Private Helper Methods
--(void)updateQuote{
-    UIColor *background = [self.colorPicker randomColorWithMinColorDifference:.4 randomnessSpecificity:UINT32_MAX alpha:.3];
-    UIColor *text = [self.colorPicker textColorFromBackgroundColor:background];
+-(void)updateQuoteAfterTap:(BOOL)tapped{
+    if(tapped){
+        [self resetTimer];
+    }
+    UIColor *background = [MHColorPicker randomColorWithMinColorDifference:.4 randomnessSpecificity:UINT32_MAX alpha:.3];
+    UIColor *text = [MHColorPicker textColorFromBackgroundColor:background];
     self.view.backgroundColor = background;
     self.quoteLabel.textColor = text;
     self.authorLabel.textColor = text;
     MHQuote *quote = [MHQuote randomQuote];
     self.authorLabel.text = [@"- " stringByAppendingString:quote.author];
     self.quoteLabel.text = quote.quote;
+    [self.quoteLabel sizeToFit];
     self.authorLabel.accessibilityLabel = quote.author;
     self.quoteLabel.accessibilityLabel = quote.quote;
+}
+-(void)resetTimer{
+    [self.changeTimer invalidate];
+    self.changeTimer = [self newTimer];
+}
+-(NSTimer *)newTimer{
+    return [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(updateQuoteAfterTap:) userInfo:nil repeats:YES];
+}
+#pragma mark - User Interaction
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self updateQuoteAfterTap:YES];
+}
+#pragma mark - Property Lazy Instantiation
+-(NSTimer *)changeTimer{
+    if(!_changeTimer){
+        _changeTimer = [NSTimer new];
+    }
+    return _changeTimer;
 }
 @end

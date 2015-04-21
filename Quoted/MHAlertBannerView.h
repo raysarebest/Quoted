@@ -7,7 +7,7 @@
 //
 
 @import UIKit;
-typedef NS_ENUM(int16_t, MHAlertBannerViewStyle){
+typedef NS_ENUM(NSInteger, MHAlertBannerViewStyle){
     MHAlertBannerViewStyleFacebookPost,
     MHAlertBannerViewStyleTwitterPost,
     MHAlertBannerViewStyleCustom

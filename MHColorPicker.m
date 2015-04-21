@@ -15,14 +15,17 @@ void scatterColors(float specificity, u_int32_t randomness);
 //I have to declare an array for colors globally, because you can't pass arrays as function arguments in C :(
 CGFloat colors[3];
 #pragma mark - Public Methods
--(UIColor *)randomColorWithMinColorDifference:(float)difference randomnessSpecificity:(u_int32_t)specificity alpha:(CGFloat)alpha{
++(UIColor *)randomColorWithMinColorDifference:(float)difference randomnessSpecificity:(u_int32_t)specificity alpha:(CGFloat)alpha{
     UIColor *color = [UIColor colorWithRed:randomColorValue(specificity) green:randomColorValue(specificity) blue:randomColorValue(specificity) alpha:alpha];
     [color getRed:&colors[0] green:&colors[1] blue:&colors[2] alpha:nil];
     scatterColors(difference, specificity);
     return [UIColor colorWithRed:colors[0] green:colors[1] blue:colors[2] alpha:alpha];
 }
--(UIColor *)textColorFromBackgroundColor:(UIColor *)background{
++(UIColor *)textColorFromBackgroundColor:(UIColor *)background{
     return [UIColor colorWithRed:1-colors[0] green:1-colors[1] blue:1-colors[2] alpha:1];
+}
++(UIColor *)randomColor{
+    return [MHColorPicker randomColorWithMinColorDifference:.4 randomnessSpecificity:UINT32_MAX alpha:1];
 }
 CGFloat randomColorValue(u_int32_t specificity){
     return (CGFloat)arc4random_uniform(specificity)/specificity;

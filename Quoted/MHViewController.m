@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSMutableArray *banners;
 @property (strong, nonatomic) ACAccount *preferredAccount;
 @property (copy) void (^accountSelectionCompletion)(ACAccount *);
+-(BOOL)sizeIsPortrait:(CGSize)size;
 -(void)randomQuoteWithVibration:(BOOL)vibration;
 -(void)quoteAreaWasTapped;
 -(void)selectAccountForAccountType:(ACAccountType *)type completion:(void (^)(ACAccount *))handler;
@@ -28,12 +29,6 @@ static NSString *const MHTweetSuccessMessage = @"Tweeted!";
 static NSString *const MHTweetFailureMessage = @"Tweet Failed!";
 //I'm supposed to add random animations into this app at some point, but I really don't feel like it. Maybe I'll do it later
 #pragma mark - Object Initializers
--(MHColorPicker *)colorPicker{
-    if(!_colorPicker){
-        _colorPicker = [[MHColorPicker alloc] init];
-    }
-    return _colorPicker;
-}
 -(MHSocialSharer *)social{
     if(!_social){
         _social = [MHSocialSharer sharerWithFacebookAppID:@"1523804647867642"];
@@ -65,6 +60,17 @@ static NSString *const MHTweetFailureMessage = @"Tweet Failed!";
     self.textView.scrollEnabled = YES;
     self.canDisplayBannerAds = YES;
     self.social.delegate = self;
+    self.textView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    if([self sizeIsPortrait:self.view.frame.size]){
+        if([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad){
+            self.textView.textAlignment = NSTextAlignmentLeft;
+            self.authorLabel.textAlignment = NSTextAlignmentRight;
+        }
+    }
+    else{
+        self.textView.textAlignment = NSTextAlignmentCenter;
+        self.authorLabel.textAlignment = NSTextAlignmentCenter;
+    }
 }
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
@@ -102,17 +108,16 @@ static NSString *const MHTweetFailureMessage = @"Tweet Failed!";
 -(void)randomQuoteWithVibration:(BOOL)vibration{
     MHQuote *quote = [MHQuote randomQuote];
     self.textView.text = quote.quote;
-    self.authorLabel.text = [NSString stringWithFormat:@"- %@", quote.author];
+    self.authorLabel.text = [@"- " stringByAppendingString:quote.author];
     self.authorLabel.accessibilityLabel = quote.author;
-    UIColor *background = [self.colorPicker randomColorWithMinColorDifference:.4 randomnessSpecificity:UINT32_MAX alpha:1];
+    UIColor *background = [MHColorPicker randomColorWithMinColorDifference:.4 randomnessSpecificity:UINT32_MAX alpha:1];
     if(self.canDisplayBannerAds){
         self.originalContentView.backgroundColor = background;
     }
     else{
         self.view.backgroundColor = background;
     }
-    self.textView.backgroundColor = background;
-    UIColor *textColor = [self.colorPicker textColorFromBackgroundColor:background];
+    UIColor *textColor = [MHColorPicker textColorFromBackgroundColor:background];
     self.authorLabel.textColor = textColor;
     self.textView.textColor = textColor;
     self.textView.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:30];
@@ -159,6 +164,18 @@ static NSString *const MHTweetFailureMessage = @"Tweet Failed!";
 }
 -(void)quoteAreaWasTapped{
     [self randomQuoteWithVibration:NO];
+}
+-(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
+    if([self sizeIsPortrait:size]){
+        if([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad){
+            self.textView.textAlignment = NSTextAlignmentLeft;
+            self.authorLabel.textAlignment = NSTextAlignmentRight;
+        }
+    }
+    else{
+        self.textView.textAlignment = NSTextAlignmentCenter;
+        self.authorLabel.textAlignment = NSTextAlignmentCenter;
+    }
 }
 #pragma mark - Social Buttons
 -(IBAction)postToFacebook:(UIButton *)sender{
@@ -218,6 +235,14 @@ static NSString *const MHTweetFailureMessage = @"Tweet Failed!";
             message = MHTweetFailureMessage;
         }
         [banner operationFailedWithMessage:message];
+    }
+}
+-(BOOL)sizeIsPortrait:(CGSize)size{
+    if(size.height > size.width){
+        return YES;
+    }
+    else{
+        return NO;
     }
 }
 #pragma mark - MHAlertBannerViewDelegate Methods
