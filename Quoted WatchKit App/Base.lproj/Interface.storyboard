@@ -10,15 +10,39 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="MHInterfaceController">
                     <items>
-                        <button alignment="center" verticalAlignment="center" id="oxP-bs-CH7">
-                            <group key="contentGroup" width="1" height="1" alignment="left" id="4dy-CU-3Hk">
-                                <items>
-                                    <label alignment="left" text="Label" id="kDd-KF-6hV"/>
-                                    <group width="1" alignment="left" id="PYD-Se-rvI"/>
-                                </items>
-                            </group>
-                        </button>
+                        <group width="1" height="1" alignment="center" verticalAlignment="center" layout="vertical" radius="0.0" id="2cc-3q-hYB">
+                            <items>
+                                <button alignment="center" verticalAlignment="center" id="AgB-Z8-LWE">
+                                    <group key="contentGroup" width="1" height="1" alignment="left" layout="vertical" radius="0.0" id="YCT-1l-lPQ">
+                                        <items>
+                                            <group alignment="center" verticalAlignment="center" id="YlN-CJ-sCS">
+                                                <items>
+                                                    <label alignment="center" verticalAlignment="center" text="Label" textAlignment="center" numberOfLines="0" id="uuR-KD-Daw">
+                                                        <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                            <group alignment="center" verticalAlignment="bottom" id="dTN-pN-bao">
+                                                <items>
+                                                    <label alignment="center" verticalAlignment="center" text="Label" textAlignment="center" id="Oc3-9M-SRc">
+                                                        <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <action selector="newQuote" destination="AgC-eL-Hgc" id="raQ-DR-595"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
                     </items>
+                    <connections>
+                        <outlet property="authorLabel" destination="Oc3-9M-SRc" id="1mj-Ei-cml"/>
+                        <outlet property="background" destination="YCT-1l-lPQ" id="dod-J0-zfi"/>
+                        <outlet property="quoteLabel" destination="uuR-KD-Daw" id="Fyf-WH-B5U"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="235" y="347"/>

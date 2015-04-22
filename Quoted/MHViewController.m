@@ -200,7 +200,13 @@ static NSString *const MHTweetFailureMessage = @"Tweet Failed!";
             }]];
         }
         [picker addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
-        [self presentViewController:picker animated:YES completion:nil];
+        if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad){
+            UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:picker];
+            [popover presentPopoverFromRect:(type.identifier == ACAccountTypeIdentifierFacebook ? self.facebookButton.frame : self.twitterButton.frame) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        }
+        else{
+            [self presentViewController:picker animated:YES completion:nil];
+        }
     }
     else{
         UIActionSheet *picker = [[UIActionSheet alloc] initWithTitle:@"Select an Account" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:nil];
