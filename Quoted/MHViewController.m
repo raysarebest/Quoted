@@ -60,7 +60,7 @@ static NSString *const MHTweetFailureMessage = @"Tweet Failed!";
     self.textView.scrollEnabled = YES;
     self.canDisplayBannerAds = YES;
     self.social.delegate = self;
-    self.textView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    self.textView.backgroundColor = [UIColor clearColor];
     if([self sizeIsPortrait:self.view.frame.size]){
         if([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad){
             self.textView.textAlignment = NSTextAlignmentLeft;
@@ -262,7 +262,7 @@ static NSString *const MHTweetFailureMessage = @"Tweet Failed!";
         if(banner.watchedObject == post){
             if([error.domain isEqualToString:@"MHSocialError"] && error.code == 100){
                 //Here, we reassign the post's watchedObject to the new connection that should retry the post
-                banner.watchedObject = [self.social.requests objectAtIndex:self.social.requests.count - 2];
+                banner.watchedObject = self.social.requests[self.social.requests.count - 2];
             }
             else{
                 if([post.originalRequest.URL.absoluteString containsString:@"graph.facebook.com"]){
@@ -299,7 +299,7 @@ static NSString *const MHTweetFailureMessage = @"Tweet Failed!";
     if(buttonIndex != actionSheet.cancelButtonIndex){
         NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
         if([title hasPrefix:@"@"]){
-            [title substringFromIndex:1];
+            title = [title substringFromIndex:1];
         }
         for(ACAccount *account in self.social.deviceAccounts.accounts){
             if([account.username isEqualToString:title]){
