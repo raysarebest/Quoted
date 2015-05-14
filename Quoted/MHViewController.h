@@ -6,11 +6,10 @@
 //  Copyright (c) 2014 Michael Hulet. All rights reserved.
 //
 
-#import "MHSocialSharer.h"
 #import "MHAlertBannerView.h"
+@import QuoteKit;
 @import UIKit;
 @import iAd;
-@class MHSocialSharer;
 @interface MHViewController : UIViewController <ADBannerViewDelegate, MHAlertBannerViewDelegate, MHSocialDelegate, UIActionSheetDelegate>
 @property (strong, nonatomic) MHSocialSharer *social;
 @property (strong, nonatomic) IBOutlet UIButton *facebookButton;

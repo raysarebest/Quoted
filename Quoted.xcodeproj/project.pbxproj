@@ -22,6 +22,8 @@
 		3B1548DB1B040D7A00122FAC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C96776319EE04D50057A52E /* Social.framework */; };
 		3B4406551AFAC690009B65A7 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4406541AFAC690009B65A7 /* Parse.framework */; };
 		3B4406571AFAC69A009B65A7 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B4406561AFAC69A009B65A7 /* Bolts.framework */; };
+		3BA224521B042593005E568B /* MHSocialSharer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C96776019EE02E50057A52E /* MHSocialSharer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3BA224531B042598005E568B /* MHSocialSharer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96776119EE02E50057A52E /* MHSocialSharer.m */; };
 		4C4012EF19A3B19600C3C262 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4012EE19A3B19600C3C262 /* Foundation.framework */; };
 		4C4012F319A3B19600C3C262 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4012F219A3B19600C3C262 /* UIKit.framework */; };
 		4C4012F919A3B19600C3C262 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C4012F719A3B19600C3C262 /* InfoPlist.strings */; };
@@ -38,7 +40,6 @@
 		4C468A4719A6F36E002F87BB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C468A4619A6F36E002F87BB /* AudioToolbox.framework */; };
 		4C60C3781A17A5F400960F7F /* MHAlertBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C60C3771A17A5F400960F7F /* MHAlertBannerView.m */; };
 		4C7830BE19F2F913000F5798 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7830BD19F2F913000F5798 /* iAd.framework */; };
-		4C96776219EE02E50057A52E /* MHSocialSharer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C96776119EE02E50057A52E /* MHSocialSharer.m */; };
 		4C96776419EE04D50057A52E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C96776319EE04D50057A52E /* Social.framework */; };
 		4CB15EA91A509D2F006F5F7F /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CB15EA81A509D2F006F5F7F /* Main-iPad.storyboard */; };
 		4CD0E1061A4FC81700B65C0A /* QuoteKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CD0E1051A4FC81700B65C0A /* QuoteKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -147,8 +148,8 @@
 		4C60C3761A17A5F400960F7F /* MHAlertBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHAlertBannerView.h; sourceTree = "<group>"; };
 		4C60C3771A17A5F400960F7F /* MHAlertBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHAlertBannerView.m; sourceTree = "<group>"; };
 		4C7830BD19F2F913000F5798 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
-		4C96776019EE02E50057A52E /* MHSocialSharer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHSocialSharer.h; sourceTree = "<group>"; };
-		4C96776119EE02E50057A52E /* MHSocialSharer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHSocialSharer.m; sourceTree = "<group>"; };
+		4C96776019EE02E50057A52E /* MHSocialSharer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHSocialSharer.h; path = ../Quoted/MHSocialSharer.h; sourceTree = "<group>"; };
+		4C96776119EE02E50057A52E /* MHSocialSharer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHSocialSharer.m; path = ../Quoted/MHSocialSharer.m; sourceTree = "<group>"; };
 		4C96776319EE04D50057A52E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		4CB15EA81A509D2F006F5F7F /* Main-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Main-iPad.storyboard"; path = "../Main-iPad.storyboard"; sourceTree = "<group>"; };
 		4CD0E1011A4FC81700B65C0A /* QuoteKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuoteKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -297,8 +298,6 @@
 				4C60C3771A17A5F400960F7F /* MHAlertBannerView.m */,
 				4C40130319A3B19600C3C262 /* MHViewController.h */,
 				4C40130419A3B19600C3C262 /* MHViewController.m */,
-				4C96776019EE02E50057A52E /* MHSocialSharer.h */,
-				4C96776119EE02E50057A52E /* MHSocialSharer.m */,
 				4C40130619A3B19600C3C262 /* Images.xcassets */,
 				4C4012F519A3B19600C3C262 /* Supporting Files */,
 			);
@@ -343,6 +342,8 @@
 				4C40132419A3B25300C3C262 /* MHQuoteStore.m */,
 				4CFC0A9C19D79BE500765F39 /* MHColorPicker.h */,
 				4CFC0A9D19D79BE500765F39 /* MHColorPicker.m */,
+				4C96776019EE02E50057A52E /* MHSocialSharer.h */,
+				4C96776119EE02E50057A52E /* MHSocialSharer.m */,
 				4CD0E1051A4FC81700B65C0A /* QuoteKit.h */,
 				4CD0E1031A4FC81700B65C0A /* Supporting Files */,
 			);
@@ -382,6 +383,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BA224521B042593005E568B /* MHSocialSharer.h in Headers */,
 				4CD0E1061A4FC81700B65C0A /* QuoteKit.h in Headers */,
 				4CF199631A5107CB00FFB068 /* MHQuoteStore.h in Headers */,
 				4CF199671A510B8300FFB068 /* MHQuote.h in Headers */,
@@ -557,7 +559,6 @@
 			files = (
 				4C4012FB19A3B19600C3C262 /* main.m in Sources */,
 				4C40130519A3B19600C3C262 /* MHViewController.m in Sources */,
-				4C96776219EE02E50057A52E /* MHSocialSharer.m in Sources */,
 				4C60C3781A17A5F400960F7F /* MHAlertBannerView.m in Sources */,
 				4C4012FF19A3B19600C3C262 /* MHAppDelegate.m in Sources */,
 			);
@@ -575,6 +576,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BA224531B042598005E568B /* MHSocialSharer.m in Sources */,
 				4CF199641A5107CB00FFB068 /* MHQuoteStore.m in Sources */,
 				4CD0E1251A4FCC7B00B65C0A /* MHColorPicker.m in Sources */,
 				4CF199681A510B8300FFB068 /* MHQuote.m in Sources */,

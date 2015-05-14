@@ -17,3 +17,4 @@ FOUNDATION_EXPORT const unsigned char QuoteKitVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <QuoteKit/PublicHeader.h>
 #import <QuoteKit/MHQuote.h>
 #import <QuoteKit/MHColorPicker.h>
+#import <QuoteKit/MHSocialSharer.h>

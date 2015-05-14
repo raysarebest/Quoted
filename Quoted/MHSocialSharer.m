@@ -6,13 +6,15 @@
 //  Copyright (c) 2014 Michael Hulet. All rights reserved.
 //
 
+//TODO: There's a weird install-time error in here somewhere that causes a crash the first time the user tries to authorize a social network account. This can be reproduced in a controlled setting by creating a new simulator with each test build, and delete said simulator when finished. That needs to be done before the next release
+
 //Facebook App ID: 1523804647867642
 #import "MHSocialSharer.h"
 @interface MHSocialSharer()
--(SLComposeViewController *)shareSheetForNetwork:(NSString *)network message:(NSString *)message;
--(void)postMessageToNetwork:(NSString *)network message:(NSString *)message error:(NSError **)error;
--(void)removeConnection:(NSURLConnection *)connection;
--(NSURLRequest *)requestForMessage:(NSString *)message withAccount:(ACAccount *)account;
+-(nullable SLComposeViewController *)shareSheetForNetwork:(nonnull NSString *)network message:(nonnull NSString *)message;
+-(void)postMessageToNetwork:(nonnull NSString *)network message:(nonnull NSString *)message error:(NSError * __nullable *)error;
+-(void)removeConnection:(nonnull NSURLConnection *)connection;
+-(nonnull NSURLRequest *)requestForMessage:(nonnull NSString *)message withAccount:(nonnull ACAccount *)account;
 @end
 @implementation MHSocialSharer
 #pragma mark - Initializers
@@ -68,6 +70,7 @@
             if(globalError){
                 result = NO;
             }
+            //TODO: Retry here if allowed
         }];
     }
     else{
@@ -98,13 +101,13 @@
         if(message.length > 140){
             *error = [NSError errorWithDomain:@"MHSocialError" code:5 userInfo:@{NSLocalizedDescriptionKey:@"Quote too long", NSLocalizedFailureReasonErrorKey:@"This quote exceeds Twitter's 140 charachter limit!", NSLocalizedRecoverySuggestionErrorKey:@"Unfortunately, this quote cannot be posted to Twitter."}];
             [self.delegate post:[[NSURLConnection alloc] init] didFailWithError:*error];
-
+            return;
         }
     }
     NSArray *accounts = [self.deviceAccounts accountsWithAccountType:[self.deviceAccounts accountTypeWithAccountTypeIdentifier:network]];
     ACAccount *account = nil;
     if(accounts.count > 1){
-        if([(NSObject *)self.delegate respondsToSelector:@selector(accountForAccountType:)]){
+        if([self.delegate respondsToSelector:@selector(accountForAccountType:)]){
             account = [self.delegate accountForAccountType:[self.deviceAccounts accountTypeWithAccountTypeIdentifier:network]];
         }
     }
@@ -210,7 +213,7 @@
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
     if([connection.originalRequest.URL.absoluteString isEqualToString:@"https://api.twitter.com/1.1/statuses/update.json"]){
     }
-    if([(NSObject *)self.delegate respondsToSelector:@selector(postSucceeded:)]){
+    if([self.delegate respondsToSelector:@selector(postSucceeded:)]){
         [self.delegate postSucceeded:connection];
     }
     [self removeConnection:connection];
