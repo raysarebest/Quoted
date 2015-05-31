@@ -7,9 +7,9 @@
 //
 
 #import "MHAlertBannerView.h"
-#define bannerHeight 44
+static const NSInteger bannerHeight = 44;
 @interface MHAlertBannerView()
-@property (nonatomic) CGFloat statusBarHeight;
+@property (nonatomic, readonly) CGFloat statusBarHeight;
 -(void)cancel;
 @end
 @implementation MHAlertBannerView
@@ -116,9 +116,6 @@
 }
 #pragma mark - Property Lazy Instantiation
 -(CGFloat)statusBarHeight{
-    if(!_statusBarHeight){
-        _statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height / 2;
-    }
-    return _statusBarHeight;
+        return [UIApplication sharedApplication].statusBarFrame.size.height / 2;
 }
 @end

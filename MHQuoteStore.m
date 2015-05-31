@@ -17,7 +17,7 @@
     static MHQuoteStore *store = nil;
     static dispatch_once_t token;
     dispatch_once(&token, ^{
-        store = [[self alloc] init];
+        store = [self new];
     });
     return store;
 }

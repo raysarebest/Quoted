@@ -28,7 +28,7 @@ static NSString *const MHFacebookPostFailureMessage = @"Post to Facebook Failed!
 static NSString *const MHTweetSuccessMessage = @"Tweeted!";
 static NSString *const MHTweetFailureMessage = @"Tweet Failed!";
 //I'm supposed to add random animations into this app at some point, but I really don't feel like it. Maybe I'll do it later
-#pragma mark - Object Initializers
+#pragma mark - Property Lazy Instantiation
 -(MHSocialSharer *)social{
     if(!_social){
         _social = [MHSocialSharer sharerWithFacebookAppID:@"1523804647867642"];

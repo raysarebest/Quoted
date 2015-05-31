@@ -8,7 +8,6 @@
 
 #import "MHAppDelegate.h"
 #import "MHViewController.h"
-@import Social;
 @implementation MHAppDelegate
 -(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     // Override point for customization after application launch.
