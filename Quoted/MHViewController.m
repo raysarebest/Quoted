@@ -17,7 +17,7 @@
 @property (strong, nonatomic) ACAccount *preferredAccount;
 @property (copy) void (^accountSelectionCompletion)(ACAccount *);
 -(void)randomQuoteWithVibration:(BOOL)vibration;
--(void)quoteAreaWasTapped;
+-(void)changeQuote;
 -(void)selectAccountForAccountType:(ACAccountType *)type completion:(void (^)(ACAccount *))handler;
 -(void)presentBannerWithStyle:(MHAlertBannerViewStyle)style failure:(BOOL)status;
 -(void)postQuoteToNetwork:(NSString *)network;
@@ -64,7 +64,7 @@ NSString *const MHTweetFailureMessage = @"Tweet Failed!";
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self randomQuoteWithVibration:NO];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(quoteAreaWasTapped)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeQuote)];
     tap.numberOfTapsRequired = 1;
     tap.cancelsTouchesInView = NO;
     [self.textView addGestureRecognizer:tap];
@@ -94,10 +94,10 @@ NSString *const MHTweetFailureMessage = @"Tweet Failed!";
         self.twitterButton.hidden = NO;
     }
     if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]){
-        self.facebookButton.hidden = YES;
         if(!self.twitterButton.hidden){
             self.twitterButton.center = self.facebookButton.center;
         }
+        self.facebookButton.hidden = YES;
     }
     else{
         self.facebookButton.hidden = NO;
@@ -125,6 +125,8 @@ NSString *const MHTweetFailureMessage = @"Tweet Failed!";
     self.authorLabel.textColor = textColor;
     self.textView.textColor = textColor;
     self.textView.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:30];
+    [self layoutSocialButtons];
+    [self observeValueForKeyPath:nil ofObject:nil change:nil context:nil];
     if(vibration){
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     }
@@ -164,9 +166,9 @@ NSString *const MHTweetFailureMessage = @"Tweet Failed!";
     }
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    [self randomQuoteWithVibration:NO];
+    [self changeQuote];
 }
--(void)quoteAreaWasTapped{
+-(void)changeQuote{
     [self randomQuoteWithVibration:NO];
 }
 #pragma mark - Social Buttons

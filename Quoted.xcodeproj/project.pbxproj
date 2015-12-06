@@ -101,13 +101,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4C0B580219A51E9800EC1DFF /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = iPad;
-			sourceTree = "<group>";
-		};
 		4C4012E219A3B19600C3C262 = {
 			isa = PBXGroup;
 			children = (
@@ -145,7 +138,6 @@
 		4C4012F419A3B19600C3C262 /* Quoted */ = {
 			isa = PBXGroup;
 			children = (
-				4C0B580219A51E9800EC1DFF /* iPad */,
 				4C4012FD19A3B19600C3C262 /* MHAppDelegate.h */,
 				4C4012FE19A3B19600C3C262 /* MHAppDelegate.m */,
 				4C40130019A3B19600C3C262 /* Main.storyboard */,

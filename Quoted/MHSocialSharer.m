@@ -170,10 +170,8 @@
     return NO;
 }
 -(void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge{
-    NSLog(@"Challenge sent");
     //self.requests will be structured with the connection immediately followed by its corresponding account
     if(challenge.previousFailureCount > 0){
-        NSLog(@"Challenge Failed");
         for(NSUInteger i = 0; i < self.requests.count; i++){
             if([self.requests objectAtIndex:i] == connection){
                 ACAccount *account = (ACAccount *)[self.requests objectAtIndex:i+1];
@@ -210,8 +208,6 @@
 }
 #pragma mark - NSURLConnectionDataDelegate Methods
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
-    if([connection.originalRequest.URL.absoluteString isEqualToString:@"https://api.twitter.com/1.1/statuses/update.json"]){
-    }
     if([(NSObject *)self.delegate respondsToSelector:@selector(postSucceeded:)]){
         [self.delegate postSucceeded:connection];
     }
